@@ -20,14 +20,111 @@ body {
   padding: 1.2em;
 }
 
-.SiteHeader-nav-link {
+.SiteHeader-nav-link:link, .SiteHeader-nav-link:visited {
   text-decoration: none;
   font-weight: bolder;
   font-size: 1.5em;
   color: goldenrod;
+  -webkit-transition: all .3s ease-out;
+  transition: all .3s ease-out;
 }
 
-h1 {
+.SiteHeader-nav-link:hover {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+  color: #ceb26c;
+}
+
+.baneer {
+  background: url(../img/background.jpg);
+  width: 100%;
+  height: 450px;
+  background-size: cover;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.baneer-title {
+  color: white;
+  font-size: 4em;
+  text-shadow: 1px 1px 2px grey;
+  z-index: 5;
+}
+
+.Layout {
+  width: 80%;
+  margin: 0 auto;
+}
+
+h2 {
   text-align: center;
+}
+
+.Homecontainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.productSticker {
+  width: 400px;
+  background-color: #3a3535;
+  border-radius: 10px;
+  border: thick double goldenrod;
+  margin: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.productSticker-title {
+  color: goldenrod;
+}
+
+.productSticker-pic {
+  background-size: contain;
+}
+
+.productSticker-desc {
+  padding: .5em;
+  color: #ceb26c;
+}
+
+.productSticker-price {
+  display: block;
+  text-align: center;
+  padding: .3em;
+  color: white;
+}
+
+.productSticker-date {
+  color: white;
+  font-style: italic;
+  text-align: right;
+  padding-right: .7em;
+}
+
+.productSticker-cat {
+  padding: .5em;
+  color: goldenrod;
 }
 /*# sourceMappingURL=style.css.map */
