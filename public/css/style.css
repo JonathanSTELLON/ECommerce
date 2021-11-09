@@ -1,0 +1,33 @@
+html, body {
+  font-family: "Josefin Sans", sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+.SiteHeader-nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  background-color: #3a3535;
+  padding: 1.2em;
+}
+
+.SiteHeader-nav-link {
+  text-decoration: none;
+  font-weight: bolder;
+  font-size: 1.5em;
+  color: goldenrod;
+}
+
+h1 {
+  text-align: center;
+}
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,29 @@
+@import 'variables';
+
+html, body{
+    font-family: $font;
+}
+
+body{
+    margin: 0;
+}
+
+.SiteHeader{
+    &-nav{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        background-color: rgb(58, 53, 53);
+        padding: 1.2em;
+        &-link{
+            text-decoration: none;
+            font-weight: bolder;
+            font-size: 1.5em;
+            color: goldenrod;
+        }
+    }
+}
+
+h1{
+    text-align: center;
+}
