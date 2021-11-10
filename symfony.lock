@@ -106,6 +106,9 @@
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.5"
     },
+    "javiereguiluz/easyslugger": {
+        "version": "v1.0.0"
+    },
     "laminas/laminas-code": {
         "version": "4.4.3"
     },
@@ -202,6 +205,9 @@
             "./.env"
         ]
     },
+    "symfony/form": {
+        "version": "v5.3.10"
+    },
     "symfony/framework-bundle": {
         "version": "5.3",
         "recipe": {
@@ -257,8 +263,14 @@
             "./config/packages/dev/monolog.yaml"
         ]
     },
+    "symfony/options-resolver": {
+        "version": "v5.3.7"
+    },
     "symfony/polyfill-intl-grapheme": {
         "version": "v1.23.1"
+    },
+    "symfony/polyfill-intl-icu": {
+        "version": "v1.23.0"
     },
     "symfony/polyfill-intl-normalizer": {
         "version": "v1.23.0"
@@ -274,6 +286,12 @@
     },
     "symfony/polyfill-php81": {
         "version": "v1.23.0"
+    },
+    "symfony/property-access": {
+        "version": "v5.3.8"
+    },
+    "symfony/property-info": {
+        "version": "v5.3.8"
     },
     "symfony/proxy-manager-bridge": {
         "version": "v5.3.4"

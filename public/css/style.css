@@ -16,7 +16,7 @@ body {
           flex-direction: row;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  background-color: #3a3535;
+  background-color: black;
   padding: 1.2em;
 }
 
@@ -36,10 +36,10 @@ body {
 }
 
 .baneer {
-  background: url(../img/background.jpg);
+  background: url(../img/darkhead.jpg);
   width: 100%;
   height: 450px;
-  background-size: cover;
+  background-size: 70%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -52,14 +52,19 @@ body {
 }
 
 .baneer-title {
-  color: white;
-  font-size: 4em;
-  text-shadow: 1px 1px 2px grey;
+  color: goldenrod;
+  font-size: 5em;
+  text-shadow: 1px 1px 2px white;
   z-index: 5;
 }
 
 .Layout {
   width: 80%;
+  margin: 0 auto;
+}
+
+.LayoutProduct {
+  width: 60%;
   margin: 0 auto;
 }
 
@@ -94,6 +99,9 @@ h2 {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .productSticker-title {
@@ -126,5 +134,75 @@ h2 {
 .productSticker-cat {
   padding: .5em;
   color: goldenrod;
+}
+
+.productSticker-button:link, .productSticker-button:visited {
+  display: inline-block;
+  padding: .5em;
+  margin: .5em;
+  background-color: goldenrod;
+  color: white;
+  width: 30%;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+  border-radius: 5px;
+  -webkit-transition: all .3s ease-out;
+  transition: all .3s ease-out;
+}
+
+.productSticker-button:hover {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+  background-color: #ceb26c;
+}
+
+.detailProduct {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.detailProduct-pic {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  border-radius: 10px;
+  border: .7rem solid goldenrod;
+}
+
+.detailProduct-title {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.detailProduct-desc {
+  font-size: 1.3em;
+  text-align: justify;
+}
+
+.detailProduct-date {
+  font-size: .9em;
+}
+
+.detailProduct-cat {
+  font-size: .9em;
+}
+
+.detailProduct-price {
+  font-size: .9em;
 }
 /*# sourceMappingURL=style.css.map */

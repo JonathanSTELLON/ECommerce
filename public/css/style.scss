@@ -13,7 +13,7 @@ body{
         display: flex;
         flex-direction: row;
         justify-content: space-around;
-        background-color: rgb(58, 53, 53);
+        background-color: black;
         padding: 1.2em;
         &-link:link, &-link:visited{
             text-decoration: none;
@@ -30,23 +30,28 @@ body{
 }
 
 .baneer{
-    background: url(../img/background.jpg);
+    background: url(../img/darkhead.jpg);
     width: 100%;
     height: 450px;
-    background-size: cover;
+    background-size: 70%;
     display: flex;
     justify-content: center;
     align-items: center;
     &-title{
-        color: white;
-        font-size: 4em;
-        text-shadow: 1px 1px 2px grey;
+        color: goldenrod;
+        font-size: 5em;
+        text-shadow: 1px 1px 2px white;
         z-index: 5;
     }
 }
 
 .Layout{
     width: 80%;
+    margin: 0 auto;
+}
+
+.LayoutProduct{
+    width: 60%;
     margin: 0 auto;
 }
 
@@ -69,6 +74,7 @@ h2{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     &-title{
         color: goldenrod;
     }
@@ -94,5 +100,52 @@ h2{
     &-cat{
         padding: .5em;
         color: goldenrod;
+    }
+    &-button:link, &-button:visited{
+        display: inline-block;
+        padding: .5em;
+        margin: .5em;
+        background-color: goldenrod;
+        color: white;
+        width: 30%;
+        text-decoration: none;
+        text-transform: uppercase;
+        text-align: center;
+        border-radius: 5px;
+        transition:all .3s ease-out;
+    }
+    &-button:hover{
+        transform: scale(1.2);
+        background-color: rgb(206, 178, 108);
+    }
+}
+
+.detailProduct{
+    margin-top: 1em;
+    margin-bottom: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    &-pic{
+        align-self: center;
+        border-radius: 10px;
+        border: .7rem solid goldenrod;
+    }
+    &-title{
+        align-self: center;
+    }
+    &-desc{
+        font-size: 1.3em;
+        text-align: justify;
+    }
+    &-date{
+        font-size: .9em;
+    }
+    &-cat{
+        font-size: .9em;
+    }
+    &-price{
+        font-size: .9em;
     }
 }

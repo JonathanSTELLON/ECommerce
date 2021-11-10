@@ -9,8 +9,16 @@ use App\Entity\Product;
 use Bluemmb\Faker\PicsumPhotosProvider;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class AppFixtures extends Fixture{
+
+    private $slugger;
+
+    public function __construct(SluggerInterface $slugger){
+        
+        $this->slugger = $slugger;
+    }
 
     public function load(ObjectManager $manager): void{
 
@@ -45,7 +53,7 @@ class AppFixtures extends Fixture{
             $product->setDescription($faker->text(2500));
             $product->setThumbnail($faker->imageUrl(300, 200, true));
             $product->setCreatedAt(DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-3 years', 'now', 'Europe/Paris')));
-            $product->setSlug();
+            $product->setSlug($this->slugger->slug($product->getName()));
             $manager->persist($product);
         }
     

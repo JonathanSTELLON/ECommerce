@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ parent() }} - Produit {% endblock %}
+
+{% block body %}
+
+    <article class="detailProduct LayoutProduct">
+        <img class="detailProduct-pic" src="{{product.thumbnail}}"></img>
+        <h2 class="detailProduct-title">{{product.name|capitalize}}</h2>
+        <p class="detailProduct-desc">{{product.description}}</p>
+        <small class="detailProduct-date">Publié le {{product.createdAt|date('d/m/Y')}}</small></br>
+        <small class="detailProduct-cat">Catégorie : {{product.category.name}}</small>
+        <small class="detailProduct-price">Prix : {{product.price}} €</small>
+    </article>
+
+    {{form_start(ReviewType)}} {# ->balise <form> #}
+        {{ form_widget(ReviewType)}} {# ->les champs du formulaire #}
+        <input class="submit" type="submit" value="Noter !"> {# On peut laisser le bouton en dur #}
+    {{form_end(ReviewType)}} {# ->balise </form> #}
+
+{% endblock %}
