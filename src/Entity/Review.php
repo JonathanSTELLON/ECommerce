@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ReviewRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ReviewRepository::class)
@@ -19,11 +20,13 @@ class Review
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Veuillez entrer votre pseudo")
      */
     private $nickname;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Veuillez saisir un avis")
      */
     private $content;
 
