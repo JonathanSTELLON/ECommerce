@@ -13,9 +13,23 @@
         <small class="detailProduct-price">Prix : {{product.price}} €</small>
     </article>
 
-    {{form_start(ReviewType)}} {# ->balise <form> #}
-        {{ form_widget(ReviewType)}} {# ->les champs du formulaire #}
-        <input class="submit" type="submit" value="Noter !"> {# On peut laisser le bouton en dur #}
-    {{form_end(ReviewType)}} {# ->balise </form> #}
+    <div class="formContainer LayoutProduct">
+        <h3>Laissez un avis</h3>
+        {{form_start(ReviewType, {'attr':{'class':'form'}})}} {# ->balise <form> #}
+            {{ form_widget(ReviewType, {'attr':{'class':'formChamp'}})}} {# ->les champs du formulaire #}
+            <input class="submit" type="submit" value="Noter !"> {# On peut laisser le bouton en dur #}
+        {{form_end(ReviewType)}} {# ->balise </form> #}
+    </div>
 
+    <h3 class="LayoutProduct">Les derniers avis</h3>
+    <div class="Review LayoutProduct">
+        {% for comment in comments %}
+        <div class="Comment">
+            <small>Publié par : {{comment.nickname}} le {{comment.createdAt|date('d/m/Y')}}</small>
+            <p>Avis : {{comment.content}}</p>
+            <small class="grade">Note : {{comment.grade}}/5</small></br>
+        </div>
+        {% endfor %}
+    </div>
+    
 {% endblock %}

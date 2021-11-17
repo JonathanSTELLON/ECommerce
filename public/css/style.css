@@ -4,6 +4,23 @@ html, body {
 
 body {
   margin: 0;
+  background-color: #3a3535;
+  color: #cac8c8;
+}
+
+.flash {
+  text-align: center;
+  margin: .7em;
+  font-weight: bolder;
+  font-size: 2.5em;
+}
+
+.flash-success {
+  color: greenyellow;
+}
+
+.flash-failure {
+  color: #f13232;
 }
 
 .SiteHeader-nav {
@@ -38,7 +55,7 @@ body {
 .baneer {
   background: url(../img/darkhead.jpg);
   width: 100%;
-  height: 450px;
+  height: 600px;
   background-size: 70%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -159,7 +176,7 @@ h2 {
 
 .detailProduct {
   margin-top: 1em;
-  margin-bottom: 1em;
+  margin-bottom: 2.5em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -204,5 +221,56 @@ h2 {
 
 .detailProduct-price {
   font-size: .9em;
+}
+
+input {
+  margin: 1em;
+}
+
+.submit {
+  background-color: #3a3535;
+  color: #ceb26c;
+  padding: .7em;
+  margin-left: 0;
+  margin-bottom: 2.5em;
+}
+
+textarea, select {
+  margin-left: .7em;
+}
+
+textarea {
+  width: 40%;
+  height: 80px;
+}
+
+.Review {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  color: #3a3535;
+}
+
+.Comment {
+  background-color: #ceb26c;
+  width: 60%;
+  padding: .7em;
+  border-radius: 10px;
+  margin: 1em;
+  margin-left: 0;
+}
+
+.Comment:nth-child(odd) {
+  background-color: #cac8c8;
+}
+
+.grade {
+  font-weight: bolder;
+  font-size: 1.2em;
 }
 /*# sourceMappingURL=style.css.map */

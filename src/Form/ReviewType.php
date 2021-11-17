@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ReviewType extends AbstractType
 {
@@ -19,7 +20,7 @@ class ReviewType extends AbstractType
             ->add('nickname', TextType::class, [
                 'label' => 'Pseudo'
             ])
-            ->add('content', TextType::class, [
+            ->add('content', TextareaType::class, [
                 'label' => 'Votre avis'
             ])
             ->add('grade', ChoiceType::class, [
