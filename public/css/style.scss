@@ -25,6 +25,10 @@ body{
     color: rgb(241, 50, 50);
 }
 
+h2{
+    font-size: 2em;
+}
+
 h3{
     color: goldenrod;
 }
@@ -51,7 +55,7 @@ h3{
             transition:all .3s ease-out;
         }
         &-link:hover{
-            transform: scale(1.2);
+            transform: scale(1.05);
             color: rgb(206, 178, 108);
         }
     }
@@ -79,7 +83,7 @@ h3{
     padding: .7em;
     position: absolute;
     width: 150px;
-    top: 60px;
+    top: 65px;
     &::before{
         content:"";
         background-color: rgb(206, 178, 108);;
@@ -93,7 +97,14 @@ h3{
     &-link{
         color:rgb(58, 53, 53)!important;
         padding: .7em;
-    }
+        opacity: 0;
+        transform: translateX(-30px);
+        @for $i from 1 to 10 {
+            &:nth-child(#{$i}){
+                animation: apparition 0.2s 0.2s*$i ease-out forwards;
+            }
+        }
+    } 
 }
 
 //Global-home
@@ -151,7 +162,6 @@ h2{
         padding-right: .7em;
     }
     &-cat{
-        padding: .5em;
         color: goldenrod;
     }
     &-button:link, &-button:visited{
@@ -269,3 +279,11 @@ li{
     font-size: 1.2em;
 }
 
+//KEYFRAMES
+
+@keyframes apparition{
+    100%{
+      opacity: 1;
+      transform: none;
+    }
+}

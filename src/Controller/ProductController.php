@@ -21,7 +21,7 @@ class ProductController extends AbstractController{
      */
     public function show(ProductRepository $productRepository, Request $request, $slug, EntityManagerInterface $manager, ReviewRepository $reviewRepository):Response{
 
-        $review = new Review(); //on ne l'injecte pas car les entités ne sont pas services
+        $review = new Review(); //on ne l'injecte pas car les entités ne sont pas des services
         $form = $this->createForm(ReviewType::class, $review);
 
         $createdAt = new DateTimeImmutable();

@@ -2,9 +2,9 @@
     {# {{ dump( categoryRepository.findAll()) }} #}
     {# <a href="#" class="SiteHeader-nav-link burger"><i class="fas fa-bars"></i></a>
     <a href="#" class="SiteHeader-nav-link noBurger"><i class="fas fa-times"></i></a> #}
-    <a class="SiteHeader-nav-link" href="{{ path('home_index') }}">Accueil</a>
+    <a class="SiteHeader-nav-link" href="{{ path('home_index') }}"><i class="fas fa-home"></i> Accueil</a>
     <div>
-        <a class="SiteHeader-nav-link SelectionClick" href="#">Selection</a>
+        <a class="SiteHeader-nav-link SelectionClick" href="#"><i class="fas fa-wine-bottle"></i> Selection</a>
         <nav class="Selection">
             {% for category in categoryRepository.findAll() %}
                 <a class="SiteHeader-nav-link Selection-link" href="{{ path('category_show', {'slug' : category.slug }) }}">{{category.name}}</a>

@@ -4,20 +4,24 @@ namespace App\DataFixtures;
 
 use Faker\Factory;
 use DateTimeImmutable;
-use App\Entity\Category;
 use App\Entity\Product;
+use App\Entity\Category;
+use App\Entity\User;
 use Bluemmb\Faker\PicsumPhotosProvider;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture{
 
     private $slugger;
+    private $hasher;
 
-    public function __construct(SluggerInterface $slugger){
+    public function __construct(SluggerInterface $slugger, UserPasswordHasherInterface $hasher){
         
         $this->slugger = $slugger;
+        $this->hasher = $hasher;
     }
 
     public function load(ObjectManager $manager): void{
@@ -57,7 +61,18 @@ class AppFixtures extends Fixture{
             $product->setSlug($this->slugger->slug($product->getName()));
             $manager->persist($product);
         }
-    
+
+        for ($i = 0; $i < 10; $i++){
+
+            //On crée 10 nouveaux users
+            $user = new User();
+            $user->setFirstname($faker->firstName());
+            $user->setLastname($faker->lastname());
+            $user->setEmail('user'.$i.'@gmail.com');
+            $user->setPassword($this->hasher->hashPassword($user, 'password'));
+            $manager->persist($user);
+        }
+
         //Le flush éxécute le SQL, on ne le fait qu'une fois
         $manager->flush();
     }

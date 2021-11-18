@@ -23,6 +23,10 @@ body {
   color: #f13232;
 }
 
+h2 {
+  font-size: 2em;
+}
+
 h3 {
   color: goldenrod;
 }
@@ -61,8 +65,8 @@ h3 {
 }
 
 .SiteHeader-nav-link:hover {
-  -webkit-transform: scale(1.2);
-          transform: scale(1.2);
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
   color: #ceb26c;
 }
 
@@ -95,7 +99,7 @@ h3 {
   padding: .7em;
   position: absolute;
   width: 150px;
-  top: 60px;
+  top: 65px;
 }
 
 .Selection::before {
@@ -113,6 +117,54 @@ h3 {
 .Selection-link {
   color: #3a3535 !important;
   padding: .7em;
+  opacity: 0;
+  -webkit-transform: translateX(-30px);
+          transform: translateX(-30px);
+}
+
+.Selection-link:nth-child(1) {
+  -webkit-animation: apparition 0.2s 0.2s ease-out forwards;
+          animation: apparition 0.2s 0.2s ease-out forwards;
+}
+
+.Selection-link:nth-child(2) {
+  -webkit-animation: apparition 0.2s 0.4s ease-out forwards;
+          animation: apparition 0.2s 0.4s ease-out forwards;
+}
+
+.Selection-link:nth-child(3) {
+  -webkit-animation: apparition 0.2s 0.6s ease-out forwards;
+          animation: apparition 0.2s 0.6s ease-out forwards;
+}
+
+.Selection-link:nth-child(4) {
+  -webkit-animation: apparition 0.2s 0.8s ease-out forwards;
+          animation: apparition 0.2s 0.8s ease-out forwards;
+}
+
+.Selection-link:nth-child(5) {
+  -webkit-animation: apparition 0.2s 1s ease-out forwards;
+          animation: apparition 0.2s 1s ease-out forwards;
+}
+
+.Selection-link:nth-child(6) {
+  -webkit-animation: apparition 0.2s 1.2s ease-out forwards;
+          animation: apparition 0.2s 1.2s ease-out forwards;
+}
+
+.Selection-link:nth-child(7) {
+  -webkit-animation: apparition 0.2s 1.4s ease-out forwards;
+          animation: apparition 0.2s 1.4s ease-out forwards;
+}
+
+.Selection-link:nth-child(8) {
+  -webkit-animation: apparition 0.2s 1.6s ease-out forwards;
+          animation: apparition 0.2s 1.6s ease-out forwards;
+}
+
+.Selection-link:nth-child(9) {
+  -webkit-animation: apparition 0.2s 1.8s ease-out forwards;
+          animation: apparition 0.2s 1.8s ease-out forwards;
 }
 
 .Layout {
@@ -189,7 +241,6 @@ h2 {
 }
 
 .productSticker-cat {
-  padding: .5em;
   color: goldenrod;
 }
 
@@ -326,5 +377,21 @@ li {
 .grade {
   font-weight: bolder;
   font-size: 1.2em;
+}
+
+@-webkit-keyframes apparition {
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+  }
+}
+
+@keyframes apparition {
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+  }
 }
 /*# sourceMappingURL=style.css.map */
