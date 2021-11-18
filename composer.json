@@ -16,6 +16,7 @@
         "doctrine/orm": "^2.10",
         "fakerphp/faker": "^1.16",
         "javiereguiluz/easyslugger": "^1.0",
+        "sensio/framework-extra-bundle": "^6.2",
         "symfony/asset": "5.3.*",
         "symfony/console": "5.3.*",
         "symfony/dotenv": "5.3.*",

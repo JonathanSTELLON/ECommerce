@@ -25,6 +25,15 @@ body{
     color: rgb(241, 50, 50);
 }
 
+h3{
+    color: goldenrod;
+}
+
+.appears{
+    display: flex !important;
+    flex-direction: column !important;
+}
+
 //Header
 
 .SiteHeader{
@@ -61,6 +70,29 @@ body{
         font-size: 5em;
         text-shadow: 1px 1px 2px white;
         z-index: 5;
+    }
+}
+
+.Selection{
+    display: none;
+    background-color:rgb(206, 178, 108);
+    padding: .7em;
+    position: absolute;
+    width: 150px;
+    top: 60px;
+    &::before{
+        content:"";
+        background-color: rgb(206, 178, 108);;
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        top: -9px;
+        right: 132px;
+        transform: rotate(45deg);
+    }
+    &-link{
+        color:rgb(58, 53, 53)!important;
+        padding: .7em;
     }
 }
 
@@ -173,10 +205,14 @@ h2{
     }
 }
 
+a{
+    text-decoration: none;
+}
+
 //Formulaire
 
 input{
-    margin: 1em;
+    margin: 2em;
 }
 
 .submit{
@@ -194,6 +230,16 @@ textarea, select{
 textarea{
     width: 40%;
     height: 80px;
+}
+
+ul{
+    padding: 0;
+}
+
+li{
+    color:rgb(241, 50, 50);
+    list-style-type: none;
+    font-size: 1.5em;
 }
 
 //Commentaires

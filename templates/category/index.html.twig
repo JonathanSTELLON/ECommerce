@@ -1,19 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} {{ parent() }} - Accueil {% endblock %}
+{% block title %} {{ parent() }} - {{slug}} {% endblock %}
 
 {% block body %}
 
-    <h2>Les dernières bonnes bouteilles pour s'encanailler</h2>
+    <h2>Dans la catégorie {{category.name}}</h2>
 
     <div class="Homecontainer Layout">
-    {% for product in products %}
+    {% for product in category.products %}
         <article class="productSticker">
             <h2 class="productSticker-title">{{product.name|capitalize}}</h2> 
             <img class="productSticker-pic" src="{{product.thumbnail}}"></img>
             <p class="productSticker-desc">{{product.description|slice(0,150)}}[...]</p>
             <small class="productSticker-date">Publié le {{product.createdAt|date('d/m/Y')}}</small></br>
-            <a class="linkCat" href="{{ path('category_show', {'slug' : product.category.slug }) }}"><small class="productSticker-cat">Catégorie : {{product.category.name}}</small></a>
             <small class="productSticker-price">Prix : {{product.price}} €</small>
             <a class="productSticker-button" href="{{ path('product_show',{'slug' : product.slug }) }}">J'achète !</a>
         </article>

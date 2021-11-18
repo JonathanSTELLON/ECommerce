@@ -40,6 +40,7 @@ class AppFixtures extends Fixture{
             $cat->setName($category);
             $cat->setCreatedAt(new DateTimeImmutable());
             array_push($arrayCat, $cat);
+            $cat->setSlug($this->slugger->slug($cat->getName()));
             $manager->persist($cat);
         }
 

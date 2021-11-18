@@ -23,6 +23,20 @@ body {
   color: #f13232;
 }
 
+h3 {
+  color: goldenrod;
+}
+
+.appears {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-box-direction: normal !important;
+      -ms-flex-direction: column !important;
+          flex-direction: column !important;
+}
+
 .SiteHeader-nav {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -73,6 +87,32 @@ body {
   font-size: 5em;
   text-shadow: 1px 1px 2px white;
   z-index: 5;
+}
+
+.Selection {
+  display: none;
+  background-color: #ceb26c;
+  padding: .7em;
+  position: absolute;
+  width: 150px;
+  top: 60px;
+}
+
+.Selection::before {
+  content: "";
+  background-color: #ceb26c;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: -9px;
+  right: 132px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.Selection-link {
+  color: #3a3535 !important;
+  padding: .7em;
 }
 
 .Layout {
@@ -223,8 +263,12 @@ h2 {
   font-size: .9em;
 }
 
+a {
+  text-decoration: none;
+}
+
 input {
-  margin: 1em;
+  margin: 2em;
 }
 
 .submit {
@@ -242,6 +286,16 @@ textarea, select {
 textarea {
   width: 40%;
   height: 80px;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  color: #f13232;
+  list-style-type: none;
+  font-size: 1.5em;
 }
 
 .Review {
