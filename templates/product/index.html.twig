@@ -13,6 +13,7 @@
         <small class="detailProduct-price">Prix : {{product.price}} €</small>
     </article>
 
+    {% if app.user %}
     <div class="formContainer LayoutProduct">
         <h3>Laissez un avis</h3>
         {{form_start(ReviewType, {'attr':{'class':'form', 'novalidate':'novalidate'}})}} {# ->balise <form> #}
@@ -20,8 +21,10 @@
             <input class="submit" type="submit" value="Noter !"> {# On peut laisser le bouton en dur #}
         {{form_end(ReviewType)}} {# ->balise </form> #}
     </div>
+    {% endif %}
 
     <h3 class="LayoutProduct">Les derniers avis</h3>
+
     <div class="Review LayoutProduct">
         {% for comment in comments %}
         <div class="Comment">

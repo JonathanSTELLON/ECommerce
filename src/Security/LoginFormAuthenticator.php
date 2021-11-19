@@ -15,9 +15,13 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\PassportInterface;
 use Symfony\Component\Security\Http\Authenticator\AbstractLoginFormAuthenticator;
+use Symfony\Component\Security\Http\Authenticator\Passport\Badge\CsrfTokenBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
+use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
 class LoginFormAuthenticator extends AbstractLoginFormAuthenticator{
+
+    use TargetPathTrait;
 
     public const LOGIN_ROUTE = 'security_login';
     private $urlGenerator;
@@ -55,10 +59,17 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator{
             $badge = new UserBadge($email);
             $credentials = new PasswordCredentials($plainPassword);
 
-        return new Passport($badge, $credentials);
+        return new Passport($badge, $credentials,[
+            new CsrfTokenBadge('authenticate', $request->get('login')['_csrf_token'])
+        ]);
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response{
+
+        // $targetPath est l'url de la page ou l'internaute voulait aller, si jamais il faut se connecter pour accéder à une page il sera renvoyé sur cette page ensuite une fois connecté
+        if($targetPath = $this->getTargetPath($request->getSession(), $firewallName)){
+            return new RedirectResponse($targetPath);
+        }
 
         $user = $token->getUser(); //pr afficher sur le template le nom de l'user
 

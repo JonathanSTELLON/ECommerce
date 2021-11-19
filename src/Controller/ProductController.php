@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use Twig\Environment;
 use App\Entity\Review;
 use App\Form\ReviewType;
 use App\Repository\ProductRepository;
@@ -22,6 +21,13 @@ class ProductController extends AbstractController{
     public function show(ProductRepository $productRepository, Request $request, $slug, EntityManagerInterface $manager, ReviewRepository $reviewRepository):Response{
 
         $review = new Review(); //on ne l'injecte pas car les entités ne sont pas des services
+
+        $currentUser = $this->getUser(); // On récupère l'utilisateur connecté
+
+        if($currentUser){
+            $review->setNickname($currentUser->getFullName());
+        }
+        
         $form = $this->createForm(ReviewType::class, $review);
 
         $createdAt = new DateTimeImmutable();
@@ -32,6 +38,8 @@ class ProductController extends AbstractController{
         if($form->isSubmitted() && $form->isValid()){
             $review->setCreatedAt($createdAt);
             $review->setProduct($product);
+            $review->setUser($currentUser);
+            
 
             // On persiste les données dans la base
             $manager->persist($review);
