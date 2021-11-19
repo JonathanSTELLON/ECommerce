@@ -84,6 +84,7 @@ h3 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: relative;
 }
 
 .baneer-title {
@@ -93,6 +94,13 @@ h3 {
   z-index: 5;
 }
 
+.baneer-fullname {
+  position: absolute;
+  top: -3px;
+  right: 263px;
+  font-size: 1em;
+}
+
 .Selection {
   display: none;
   background-color: #ceb26c;
@@ -100,6 +108,7 @@ h3 {
   position: absolute;
   width: 150px;
   top: 65px;
+  z-index: 5;
 }
 
 .Selection::before {

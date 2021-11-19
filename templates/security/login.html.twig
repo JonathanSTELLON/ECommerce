@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ parent() }} - Connexion {% endblock %}
+
+{% block body %}
+
+    <h2>Connectez vous !</h2>
+
+    {% if error %}
+        <p class="flash flash-failure"><i class="fas fa-exclamation-triangle"></i> {{error.message}}</p>             
+    {% endif %}
+
+    {{form_start(loginForm, {'attr':{'class':'form LayoutProduct'}})}}
+        {{ form_widget(loginForm, {'attr':{'class':'formChamp'}})}} 
+        <input class="submit" type="submit" value="Se connecter !"> 
+    {{form_end(loginForm)}} 
+
+{% endblock %}

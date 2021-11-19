@@ -69,11 +69,18 @@ h3{
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
     &-title{
         color: goldenrod;
         font-size: 5em;
         text-shadow: 1px 1px 2px white;
         z-index: 5;
+    }
+    &-fullname{
+        position: absolute;
+        top: -3px;
+        right: 263px;
+        font-size: 1em;
     }
 }
 
@@ -84,6 +91,7 @@ h3{
     position: absolute;
     width: 150px;
     top: 65px;
+    z-index: 5;
     &::before{
         content:"";
         background-color: rgb(206, 178, 108);;

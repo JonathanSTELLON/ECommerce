@@ -11,9 +11,18 @@
             {% endfor %}
         </nav>
     </div>
-        
+    
+    {% if app.user %}
+        <a class="SiteHeader-nav-link" href="{{ path('security_logout') }}"><i class="fas fa-sign-out-alt"></i> Deconnexion</a>
+    {% else %}
+        <a class="SiteHeader-nav-link" href="{{ path('security_login') }}"><i class="fas fa-sign-in-alt"></i> Connexion</a>    
+    {% endif %}
+
 </nav>
 
 <section class="baneer">
     <h1 class="baneer-title">La cave de John : bières, vins, spiritueux</h1>
+    {% if app.user %}
+        <small class="baneer-fullname"><i class="fas fa-user-circle"></i> Vous êtes en ligne {{app.user.fullName}}</small>
+    {% endif %}
 </section>
