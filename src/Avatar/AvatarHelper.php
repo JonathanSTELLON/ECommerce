@@ -11,8 +11,9 @@ class AvatarHelper {
 
     private $filesystem;
 
-    public function __construct(Filesystem $filesystem){   
+    public function __construct(Filesystem $filesystem, $avatarAbsolutePath){   
         $this->filesystem = $filesystem;
+        $this->avatarAbsolutePath = $avatarAbsolutePath;
     }
 
     public function saveSvg($svg){

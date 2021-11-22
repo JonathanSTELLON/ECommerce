@@ -3,25 +3,32 @@
 namespace App\DataFixtures;
 
 use Faker\Factory;
+use App\Entity\User;
 use DateTimeImmutable;
 use App\Entity\Product;
 use App\Entity\Category;
-use App\Entity\User;
+use App\Avatar\AvatarHelper;
+use App\Avatar\AvatarSvgFactory;
 use Bluemmb\Faker\PicsumPhotosProvider;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
+
 class AppFixtures extends Fixture{
 
     private $slugger;
     private $hasher;
+    private $avatarSvgFactory;
+    private $avatarHelper;
 
-    public function __construct(SluggerInterface $slugger, UserPasswordHasherInterface $hasher){
+    public function __construct(SluggerInterface $slugger, UserPasswordHasherInterface $hasher, AvatarSvgFactory $avatarSvgFactory, AvatarHelper $avatarHelper){
         
         $this->slugger = $slugger;
         $this->hasher = $hasher;
+        $this->avatarSvgFactory = $avatarSvgFactory;
+        $this->avatarHelper = $avatarHelper;
     }
 
     public function load(ObjectManager $manager): void{
@@ -62,7 +69,13 @@ class AppFixtures extends Fixture{
             $manager->persist($product);
         }
 
+        $size = AvatarSvgFactory::DEFAULT_SIZE;
+        $color = AvatarSvgFactory::DEFAULT_NB_COLORS;
+    
         for ($i = 0; $i < 10; $i++){
+
+            //Création des avatars
+            $svg = $data['svg'] ?? $this->avatarSvgFactory->createRandomAvatar($size,$color);
 
             //On crée 10 nouveaux users
             $user = new User();
@@ -70,6 +83,7 @@ class AppFixtures extends Fixture{
             $user->setLastname($faker->lastname());
             $user->setEmail('user'.$i.'@gmail.com');
             $user->setPassword($this->hasher->hashPassword($user, 'password'));
+            $user->setAvatar($this->avatarHelper->saveSvg($svg));
             $manager->persist($user);
         }
 

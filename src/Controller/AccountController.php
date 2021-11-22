@@ -7,7 +7,6 @@ use App\Avatar\Avatar;
 use App\Form\UserType;
 use DateTimeImmutable;
 use App\Avatar\AvatarHelper;
-use App\Form\AvatarFormType;
 use App\Avatar\AvatarSvgFactory;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -42,13 +41,9 @@ class AccountController extends AbstractController{
 
             // Sauvegarde de l'avatar et transmission du nom du fichier en BDD
             $svg = $request->request->get('svg');
-            $size = $request->request->get('size');
-            $color = $request->request->get('color');
             $fileName = $avatarHelper->saveSvg($svg);
             $session->set('avatar', array(
-                'svg' => $svg,
-                'size' => $size,
-                'color' => $color
+                'svg' => $svg
             ));
 
             $user->setAvatar($fileName);
