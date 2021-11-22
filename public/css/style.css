@@ -358,6 +358,13 @@ li {
   font-size: 1.5em;
 }
 
+.signup {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 2fr 1fr;
+      grid-template-columns: 2fr 1fr;
+}
+
 .Review {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -386,6 +393,12 @@ li {
 .grade {
   font-weight: bolder;
   font-size: 1.2em;
+}
+
+#svgAvatar {
+  margin: 0 auto;
+  width: 200px;
+  height: 200px;
 }
 
 @-webkit-keyframes apparition {

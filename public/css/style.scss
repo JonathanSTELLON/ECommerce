@@ -260,6 +260,11 @@ li{
     font-size: 1.5em;
 }
 
+.signup{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
 //Commentaires
 
 .Review{
@@ -285,6 +290,14 @@ li{
 .grade{
     font-weight: bolder;
     font-size: 1.2em;
+}
+
+//Avatar
+
+#svgAvatar{
+    margin: 0 auto;
+    width: 200px;
+    height: 200px;
 }
 
 //KEYFRAMES

@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ parent() }} - Signup {% endblock %}
+
+{% block body %}
+
+<section class="signup LayoutProduct">
+    <div class="signup-form">
+        <h2>Inscrivez-vous</h2>
+
+            {{form_start(UserType, {'attr':{'class':'form LayoutProduct', 'novalidate':'novalidate'}})}}
+                {{ form_widget(UserType, {'attr':{'class':'formChamp'}})}}
+                <input class="submit" type="submit" value="S'inscrire !"> 
+            {{form_end(UserType)}} 
+    </div>
+    <div class="signup-avatar">
+            <h2>Votre avatar</h2>
+
+            <div id="svgAvatar">
+                {{ svg|raw  }}
+            </div>
+    </div>
+</section>
+
+
+    
+
+
+{% endblock %}
