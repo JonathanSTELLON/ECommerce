@@ -19,11 +19,14 @@
         <a class="SiteHeader-nav-link" href="{{ path('account_signup') }}"><i class="fas fa-user-plus"></i> Inscription</a>
     {% endif %}
 
+    {% if app.user %}
+    <div class="UserContainer">
+        <small class="baneer-fullname">{{app.user.fullName}}</small>
+        <img class="baneerAvatar" src="/avatars/{{app.user.avatar}}" alt="">
+    </div>
+    {% endif %}
 </nav>
 
 <section class="baneer">
     <h1 class="baneer-title">La cave de John : bières, vins, spiritueux</h1>
-    {% if app.user %}
-        <small class="baneer-fullname"><i class="fas fa-user-circle"></i> Vous êtes en ligne {{app.user.fullName}}</small>
-    {% endif %}
 </section>

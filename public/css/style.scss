@@ -77,10 +77,8 @@ h3{
         z-index: 5;
     }
     &-fullname{
-        position: absolute;
-        top: -3px;
-        right: 263px;
         font-size: 1em;
+        padding-right: .3em;
     }
 }
 
@@ -113,6 +111,21 @@ h3{
             }
         }
     } 
+}
+
+.baneerAvatar{
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+}
+
+.UserContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(206, 178, 108, 0.404);
+    padding: .5em;
 }
 
 //Global-home
@@ -300,6 +313,9 @@ li{
     height: 200px;
 }
 
+svg{
+    border-radius: 100%;
+}
 //KEYFRAMES
 
 @keyframes apparition{

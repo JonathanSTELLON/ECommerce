@@ -11,6 +11,7 @@
             {{form_start(UserType, {'attr':{'class':'form LayoutProduct', 'novalidate':'novalidate'}})}}
                 {{ form_widget(UserType, {'attr':{'class':'formChamp'}})}}
                 <input class="submit" type="submit" value="S'inscrire !"> 
+                <input type="hidden" name="svg" value="{{ svg }}">
             {{form_end(UserType)}} 
     </div>
     <div class="signup-avatar">
@@ -21,9 +22,5 @@
             </div>
     </div>
 </section>
-
-
-    
-
 
 {% endblock %}

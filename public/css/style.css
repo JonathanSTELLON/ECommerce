@@ -95,10 +95,8 @@ h3 {
 }
 
 .baneer-fullname {
-  position: absolute;
-  top: -3px;
-  right: 263px;
   font-size: 1em;
+  padding-right: .3em;
 }
 
 .Selection {
@@ -174,6 +172,30 @@ h3 {
 .Selection-link:nth-child(9) {
   -webkit-animation: apparition 0.2s 1.8s ease-out forwards;
           animation: apparition 0.2s 1.8s ease-out forwards;
+}
+
+.baneerAvatar {
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+}
+
+.UserContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: rgba(206, 178, 108, 0.404);
+  padding: .5em;
 }
 
 .Layout {
@@ -399,6 +421,10 @@ li {
   margin: 0 auto;
   width: 200px;
   height: 200px;
+}
+
+svg {
+  border-radius: 100%;
 }
 
 @-webkit-keyframes apparition {

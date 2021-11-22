@@ -3,19 +3,20 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Avatar\Avatar;
 use App\Form\UserType;
 use DateTimeImmutable;
+use App\Avatar\AvatarHelper;
+use App\Form\AvatarFormType;
+use App\Avatar\AvatarSvgFactory;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Avatar\Avatar;
-use App\Avatar\AvatarHelper;
-use App\Avatar\AvatarSvgFactory;
-use App\Form\AvatarFormType;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AccountController extends AbstractController{
 
@@ -24,7 +25,7 @@ class AccountController extends AbstractController{
     /**
      * @Route("/signup", name="account_signup")
      */
-    public function signup(UserRepository $userRepository, Request $request, EntityManagerInterface $manager, UserPasswordHasherInterface $hasher, AvatarSvgFactory $avatarSvgFactory):Response{
+    public function signup(UserRepository $userRepository, Request $request, EntityManagerInterface $manager, UserPasswordHasherInterface $hasher, AvatarSvgFactory $avatarSvgFactory, AvatarHelper $avatarHelper, SessionInterface $session):Response{
 
         $user = new User;
         $this->hasher = $hasher;
@@ -39,6 +40,19 @@ class AccountController extends AbstractController{
             $plainPassword = $form->get('plainPassword')->getData();
             $user->setPassword($this->hasher->hashPassword($user, $plainPassword));
 
+            // Sauvegarde de l'avatar et transmission du nom du fichier en BDD
+            $svg = $request->request->get('svg');
+            $size = $request->request->get('size');
+            $color = $request->request->get('color');
+            $fileName = $avatarHelper->saveSvg($svg);
+            $session->set('avatar', array(
+                'svg' => $svg,
+                'size' => $size,
+                'color' => $color
+            ));
+
+            $user->setAvatar($fileName);
+
             $manager->persist($user);
             $manager->flush();
     
@@ -48,7 +62,7 @@ class AccountController extends AbstractController{
     
         }
 
-        //AVATAR GENERE RANDOM
+        //Avatar généré aléatoirement
 
         $size = $data['size'] ?? $request->request->get('size', AvatarSvgFactory::DEFAULT_SIZE);
         $color = $data['color'] ?? $request->request->get('color', AvatarSvgFactory::DEFAULT_NB_COLORS);
@@ -57,9 +71,7 @@ class AccountController extends AbstractController{
 
         return $this->render('account/signup.html.twig', [
             'UserType' => $form->createView(),
-            'svg' => $svg,
-            'size' => $size,
-            'color' => $color
+            'svg' => $svg
         ]);
 
     }

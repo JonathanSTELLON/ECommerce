@@ -17,19 +17,6 @@ class AvatarHelper {
 
     public function saveSvg($svg){
 
-        /*// Si le dossier avatars n'existe pas, on le crée 
-        if(!file_exists('avatars')){
-            mkdir('avatars', 0777, true);
-        }
-
-        // On génère un nom de fichier unique avec l'extension .svg
-        // On enregistre le code SVG dans le fichier
-        $fileName = uniqid('avatar', false);
-        $file = fopen("avatars/" . $fileName . ".svg", "c");
-        fwrite($file, $svg);
-
-        return $fileName;*/
-
         $filename = sha1(uniqid(mt_rand(), true)) . '.svg';
         $filepath = self::AVATAR_FOLDER . '/' . $filename;
 
@@ -41,14 +28,11 @@ class AvatarHelper {
     }
 
     public function downloadSvg(){
-        // $file = $svg;
 
         // On modifie les entêtes nécessaires
         header('Content-Description: File Transfer');
         header('Content-Type: img/svg+xml');
         header('Content-Disposition: attachment; filename="avatar.svg"');
-
-        // readfile($file);
     }
 
 }
