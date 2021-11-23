@@ -2,6 +2,11 @@
 
 {% block title %} {{ parent() }} - Signup {% endblock %}
 
+{% block javascripts %}
+    {{parent()}}
+    <script src="{{ asset('js/signup.js') }}" defer></script>
+{% endblock %}
+
 {% block body %}
 
 <section class="signup LayoutProduct">
@@ -15,7 +20,7 @@
             {{form_end(UserType)}} 
     </div>
     <div class="signup-avatar">
-        <h2>Votre a(léatoir)vatar</h2>
+        <h2>Votre avatar aléatoire</h2>
 
         <div id="svgAvatar">
             {{ svg|raw  }}
@@ -23,6 +28,7 @@
 
         <div>
             {{form_start(avatarType, {'attr':{'class':'avatarForm LayoutProduct'}})}}
+                {{ form_widget(avatarType) }}
                 <input class="submit" type="submit" value="Générer un autre avatar !"> 
             {{form_end(avatarType)}} 
         </div>

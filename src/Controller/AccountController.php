@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Avatar\Avatar;
 use App\Form\UserType;
 use DateTimeImmutable;
 use App\Avatar\AvatarHelper;
@@ -60,14 +59,20 @@ class AccountController extends AbstractController{
 
         //Avatar généré aléatoirement
 
-        $size = $data['size'] ?? $request->request->get('size', AvatarSvgFactory::DEFAULT_SIZE);
-        $color = $data['color'] ?? $request->request->get('color', AvatarSvgFactory::DEFAULT_NB_COLORS);
-
-        $svg = $data['svg'] ?? $avatarSvgFactory->createRandomAvatar($size,$color);
+        $size = AvatarSvgFactory::DEFAULT_SIZE;
+        $color = AvatarSvgFactory::DEFAULT_NB_COLORS;
+        $svg = $avatarSvgFactory->createRandomAvatar($size, $color);
 
         //Formulaire pour regénérer l'avatar
-        $avatarForm = $this->createForm(ReloadAvatarFormType::class, null, [
-            'action' => $this->generateUrl('ajax_avatar_generate'),
+        // $avatarForm = $this->createForm(ReloadAvatarFormType::class, null, [
+        //     'action' => $this->generateUrl('ajax_avatar_generate'),
+        // ]);
+
+        $avatarForm = $this->createForm(ReloadAvatarFormType::class, [
+            'size' => $size,
+            'color' => $color
+        ], [
+            'action' => $this->generateUrl('ajax_avatar_generate')
         ]);
 
         return $this->render('account/signup.html.twig', [
