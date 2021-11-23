@@ -8,6 +8,7 @@ use App\Form\UserType;
 use DateTimeImmutable;
 use App\Avatar\AvatarHelper;
 use App\Avatar\AvatarSvgFactory;
+use App\Form\ReloadAvatarFormType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -64,9 +65,15 @@ class AccountController extends AbstractController{
 
         $svg = $data['svg'] ?? $avatarSvgFactory->createRandomAvatar($size,$color);
 
+        //Formulaire pour regénérer l'avatar
+        $avatarForm = $this->createForm(ReloadAvatarFormType::class, null, [
+            'action' => $this->generateUrl('ajax_avatar_generate'),
+        ]);
+
         return $this->render('account/signup.html.twig', [
             'UserType' => $form->createView(),
-            'svg' => $svg
+            'svg' => $svg,
+            'avatarType' => $avatarForm->createView()
         ]);
 
     }

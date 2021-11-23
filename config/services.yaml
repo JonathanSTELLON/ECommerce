@@ -6,6 +6,8 @@
 parameters:
   avatar_dir: 'avatars'
   avatar_absolute_path: '%kernel.project_dir%/public/%avatar_dir%'
+  site_base_url: '%env(SITE_BASE_URL)%'
+  avatar_absolute_url: '%site_base_url%/%avatar_dir%'
 
 services:
     # default configuration for services in *this* file
@@ -14,7 +16,8 @@ services:
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
         bind: 
           $avatarAbsolutePath: '%avatar_absolute_path%'
-          $avatarDir: '%avatar_dir%'
+          # $avatarDir: '%avatar_dir%'
+          $avatarAbsoluteUrl: '%avatar_absolute_url%'
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name

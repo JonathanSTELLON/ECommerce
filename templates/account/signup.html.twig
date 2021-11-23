@@ -15,11 +15,18 @@
             {{form_end(UserType)}} 
     </div>
     <div class="signup-avatar">
-            <h2>Votre a(léatoir)vatar</h2>
+        <h2>Votre a(léatoir)vatar</h2>
 
-            <div id="svgAvatar">
-                {{ svg|raw  }}
-            </div>
+        <div id="svgAvatar">
+            {{ svg|raw  }}
+        </div>
+
+        <div>
+            {{form_start(avatarType, {'attr':{'class':'avatarForm LayoutProduct'}})}}
+                <input class="submit" type="submit" value="Générer un autre avatar !"> 
+            {{form_end(avatarType)}} 
+        </div>
+        
     </div>
 </section>
 

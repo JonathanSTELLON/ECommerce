@@ -2,20 +2,17 @@
 
 namespace App\Twig;
 
-use App\Entity\User;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
-use App\Avatar\AvatarHelper;
 use Twig\Extension\AbstractExtension;
 
 class AvatarExtension extends AbstractExtension{
 
-    private $user;
-    private $avatarDir;
+    private $avatarAbsoluteUrl;
 
-    public function __construct($avatarDir){   
+    public function __construct($avatarAbsoluteUrl){   
 
-        $this->avatarDir = $avatarDir;
+        $this->avatarAbsoluteUrl = $avatarAbsoluteUrl;
     }
 
     public function getFilters(): array{
@@ -37,7 +34,7 @@ class AvatarExtension extends AbstractExtension{
 
     public function avatarAsset($filename){
 
-        $avatarPath = $this->avatarDir . '/' . $filename;
+        $avatarPath = $this->avatarAbsoluteUrl . '/' . $filename;
         return $avatarPath;
     }
 }
