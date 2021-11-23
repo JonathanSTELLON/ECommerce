@@ -33,6 +33,9 @@ class AppFixtures extends Fixture{
 
     public function load(ObjectManager $manager): void{
 
+        //On supprime le dossier d'avatars quand on relance d:f:l
+        $this->avatarHelper->removeAvatarFolder();
+
         //Création de l'objet Faker
         $faker = Factory::create('fr_FR');
         $faker->addProvider(new PicsumPhotosProvider($faker));
@@ -84,6 +87,8 @@ class AppFixtures extends Fixture{
             $user->setEmail('user'.$i.'@gmail.com');
             $user->setPassword($this->hasher->hashPassword($user, 'password'));
             $user->setAvatar($this->avatarHelper->saveSvg($svg));
+            $createdAt = $faker->dateTimeBetween('-5 years', 'now');
+            $user->setCreatedAt(DateTimeImmutable::createFromMutable($createdAt));
             $manager->persist($user);
         }
 
