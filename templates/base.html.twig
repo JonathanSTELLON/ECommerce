@@ -21,7 +21,9 @@
     <body>
 
         <header class="SiteHeader">
-            {% include 'partials/_navbar.html.twig' %}
+            {% block nav %}
+                {% include 'partials/_navbar.html.twig' %}
+            {% endblock %}
         </header>
 
         {# Messages flash #}

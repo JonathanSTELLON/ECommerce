@@ -64,9 +64,6 @@ class AccountController extends AbstractController{
         $svg = $avatarSvgFactory->createRandomAvatar($size, $color);
 
         //Formulaire pour regénérer l'avatar
-        // $avatarForm = $this->createForm(ReloadAvatarFormType::class, null, [
-        //     'action' => $this->generateUrl('ajax_avatar_generate'),
-        // ]);
 
         $avatarForm = $this->createForm(ReloadAvatarFormType::class, [
             'size' => $size,

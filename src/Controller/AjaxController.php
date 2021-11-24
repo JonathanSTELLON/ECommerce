@@ -26,12 +26,6 @@ class AjaxController extends AbstractController{
         $color = $data['color'];
         $svg = $avatarSvgFactory->createRandomAvatar($size, $color);
 
-        // Création d'un avatar
-        // $size = $data['size'] ?? $request->request->get('size', AvatarSvgFactory::DEFAULT_SIZE);
-        // $color = $data['color'] ?? $request->request->get('color', AvatarSvgFactory::DEFAULT_NB_COLORS);
-
-        $svg = $data['svg'] ?? $avatarSvgFactory->createRandomAvatar($size,$color);
-
         // Construction de la réponse
         $response = new Response($svg);
         $response->headers->set('Content-Type', 'image/svg+xml');

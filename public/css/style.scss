@@ -316,6 +316,76 @@ li{
 svg{
     border-radius: 100%;
 }
+
+//Admin
+
+.dashboardPic{
+    height: 60px;
+    width: 80px;
+}
+
+table{
+    border-collapse: collapse;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    margin: 0 auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    width: 70%;
+}
+
+td{
+    border: solid 2px goldenrod;
+    padding: 1em;
+}
+
+.TabEntete{
+    background-color: rgb(58, 53, 53);
+    color: rgb(202, 200, 200);
+    font-weight: bolder;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.TabContent:nth-child(odd){
+    background-color: rgb(206, 178, 108);
+    color:rgb(58, 53, 53);
+    font-weight: bolder;
+    font-size: 1em;
+    text-align: center;
+}
+
+.TabContent:nth-child(even){
+    background-color: rgb(202, 200, 200);
+    color:rgb(58, 53, 53);
+    font-weight: bolder;
+    font-size: 1em;
+    text-align: center;
+}
+
+.buttonDiv{
+    display: flex;
+    justify-self: center;
+}
+
+.button:link, .button:visited{
+    background-color: goldenrod;
+    color: rgb(58, 53, 53);
+    padding: 1em;
+    display: inline-block;
+    margin: 0 auto;
+    font-weight: bolder;
+    font-size: 1em;
+    border-radius: 10px;
+    transition:all .3s ease-out;
+}
+
+.button:hover{
+    transform: scale(1.1);
+    background-color: rgb(206, 178, 108);
+}
+
+
 //KEYFRAMES
 
 @keyframes apparition{

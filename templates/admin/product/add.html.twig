@@ -1,0 +1,14 @@
+{% extends 'base.admin.html.twig' %}
+
+{% block title %} {{ parent() }} - Ajouter un produit {% endblock %}
+
+{% block body %}
+
+    <h2>Formulaire d'ajout de produit</h2>
+
+    {{form_start(productForm, {'attr':{'class':'form LayoutProduct', 'novalidate':'novalidate'}})}}
+        {{ form_widget(productForm, {'attr':{'class':'formChamp'}})}}
+        <input class="submit" type="submit" value="Ajouter !">          
+    {{form_end(productForm)}} 
+
+{% endblock %}

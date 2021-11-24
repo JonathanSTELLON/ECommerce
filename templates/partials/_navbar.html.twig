@@ -14,6 +14,7 @@
     
     {% if app.user %}
         <a class="SiteHeader-nav-link" href="{{ path('security_logout') }}"><i class="fas fa-sign-out-alt"></i> Deconnexion</a>
+        <a class="SiteHeader-nav-link" href="{{ path('admin_index') }}"><i class="fas fa-user-cog"></i> Administration</a>
     {% else %}
         <a class="SiteHeader-nav-link" href="{{ path('security_login') }}"><i class="fas fa-sign-in-alt"></i> Connexion</a>
         <a class="SiteHeader-nav-link" href="{{ path('account_signup') }}"><i class="fas fa-user-plus"></i> Inscription</a>

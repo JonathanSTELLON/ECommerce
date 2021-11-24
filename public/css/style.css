@@ -427,6 +427,76 @@ svg {
   border-radius: 100%;
 }
 
+.dashboardPic {
+  height: 60px;
+  width: 80px;
+}
+
+table {
+  border-collapse: collapse;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  margin: 0 auto;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  width: 70%;
+}
+
+td {
+  border: solid 2px goldenrod;
+  padding: 1em;
+}
+
+.TabEntete {
+  background-color: #3a3535;
+  color: #cac8c8;
+  font-weight: bolder;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.TabContent:nth-child(odd) {
+  background-color: #ceb26c;
+  color: #3a3535;
+  font-weight: bolder;
+  font-size: 1em;
+  text-align: center;
+}
+
+.TabContent:nth-child(even) {
+  background-color: #cac8c8;
+  color: #3a3535;
+  font-weight: bolder;
+  font-size: 1em;
+  text-align: center;
+}
+
+.buttonDiv {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-self: center;
+}
+
+.button:link, .button:visited {
+  background-color: goldenrod;
+  color: #3a3535;
+  padding: 1em;
+  display: inline-block;
+  margin: 0 auto;
+  font-weight: bolder;
+  font-size: 1em;
+  border-radius: 10px;
+  -webkit-transition: all .3s ease-out;
+  transition: all .3s ease-out;
+}
+
+.button:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  background-color: #ceb26c;
+}
+
 @-webkit-keyframes apparition {
   100% {
     opacity: 1;

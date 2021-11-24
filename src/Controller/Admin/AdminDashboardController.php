@@ -1,25 +1,24 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Repository\ProductRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class HomeController extends AbstractController{
+class AdminDashboardController extends AbstractController{
 
     /**
-     * @Route("/", name="home_index")
+     * @Route("/admin", name="admin_index")
      */
     public function index(ProductRepository $productRepository):Response{
 
         $products = $productRepository->findBy([],['createdAt' => 'DESC']);
-        //dd($products);
 
-        return $this->render('home/index.html.twig', [
+        return $this->render('admin/dashboard/index.html.twig', [
             'products' => $products
         ]);
     }
-    
+
 }
