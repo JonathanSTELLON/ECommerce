@@ -38,6 +38,16 @@ h3{
     flex-direction: column !important;
 }
 
+.errorPicContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.errorPic{
+    width: 1000px;
+}
+
 //Header
 
 .SiteHeader{

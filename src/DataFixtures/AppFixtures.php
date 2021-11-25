@@ -90,7 +90,23 @@ class AppFixtures extends Fixture{
             $createdAt = $faker->dateTimeBetween('-5 years', 'now');
             $user->setCreatedAt(DateTimeImmutable::createFromMutable($createdAt));
             $manager->persist($user);
+
         }
+
+        //On Crée 1 admin
+
+        $svg = $data['svg'] ?? $this->avatarSvgFactory->createRandomAvatar($size,$color);
+
+        $admin = new User;
+        $admin->setFirstname('Big');
+        $admin->setLastname('Brother');
+        $admin->setEmail('admin@gmail.com');
+        $admin->setPassword($this->hasher->hashPassword($admin, 'password'));
+        $admin->setAvatar($this->avatarHelper->saveSvg($svg));
+        $admin->setRoles(['ROLE_ADMIN']);
+        $createdAt = $faker->dateTimeBetween('-5 years', 'now');
+        $admin->setCreatedAt(DateTimeImmutable::createFromMutable($createdAt));
+        $manager->persist($admin);
 
         //Le flush éxécute le SQL, on ne le fait qu'une fois
         $manager->flush();

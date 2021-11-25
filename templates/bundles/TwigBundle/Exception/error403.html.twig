@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ parent() }} - Accès refusé {% endblock %}
+
+{% block body %}
+
+<div class="errorPicContainer">
+    <img class="errorPic" src="{{ asset('img/403.png') }}" alt="">
+</div>
+
+{% endblock %}
