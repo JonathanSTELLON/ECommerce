@@ -22,12 +22,12 @@
         </thead>
         <tbody>
             {% for product in products %}
-            <tr class="TabContent">
+            <tr class="TabContent" id="product-{{product.id}}">
                 <td>{{product.name|capitalize}}</td>
                 <td>{{product.category.name}}</td>
                 <td><img class="dashboardPic" src="{{product.thumbnail}}"></img></td>
-                <td><i class="far fa-edit"></i></td>
-                <td><i class="far fa-trash-alt"></i></td>
+                <td><a href="{{ path('admin_product_edit', {'id': product.id}) }}" ><i class="far fa-edit"></i></a></td>
+                <td><a class="delete" href="{{ path('admin_product_delete', {'id': product.id}) }}" ><i class="far fa-trash-alt"></i></a></td>
             </tr>
             {% endfor %}
         </tbody>

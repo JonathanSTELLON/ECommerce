@@ -52,16 +52,48 @@ class AdminProductController extends AbstractController{
     }
 
     /**
-     * @Route("/admin/product/edit", name="admin_product_edit")
+     * @Route("/admin/product/edit/{id}", name="admin_product_edit")
      */
-    public function edit(){
+    public function edit(Request $request, Product $product, EntityManagerInterface $manager):Response{
+
+        $productForm = $this->createForm(ProductType::class, $product);
+        $updatedAt = new DateTimeImmutable();
+
+        $productForm->handleRequest($request);
+
+        if($productForm->isSubmitted() && $productForm->isValid()){
+
+            $product->setUpdatedAt($updatedAt);
+
+            $manager->flush();
+            $this->addFlash('success', 'Votre produit a été correctement modifié');
+
+            return $this->redirectToRoute('admin_index');
+        }
+
+        return $this->render('admin/product/edit.html.twig', [
+            'productForm' => $productForm->createView(),
+        ]);
 
     }
 
     /**
-     * @Route("/admin/product/delete", name="admin_product_delete")
+     * @Route("/admin/product/delete/{id}", name="admin_product_delete")
      */
-    public function delete(){
+    public function delete(Request $request, $id, Product $product, EntityManagerInterface $manager){
 
+        $manager->getRepository(Product::class)->find($id);
+        $manager->remove($product);
+        $manager->flush();
+
+        if ($request->isXmlHttpRequest()){
+            return $this->json($id);
+        }
+
+        else{
+            $this->addFlash('success', 'Votre produit a été supprimé');
+            return $this->redirectToRoute('admin_index');
+        }
     }
+
 }

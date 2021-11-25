@@ -65,6 +65,11 @@ class Product
      */
     private $reviews;
 
+    /**
+     * @ORM\Column(type="datetime_immutable", nullable=true)
+     */
+    private $updatedAt;
+
     public function __construct()
     {
         $this->reviews = new ArrayCollection();
@@ -185,6 +190,18 @@ class Product
                 $review->setProduct(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
