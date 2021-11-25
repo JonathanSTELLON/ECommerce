@@ -6,8 +6,8 @@ html, body{
 
 body{
     margin: 0;
-    background-color: rgb(58, 53, 53);
-    color:rgb(202, 200, 200);
+    background-color: $darkGrey;
+    color: $lightGrey;
 }
 
 .flash{
@@ -18,11 +18,11 @@ body{
 }
 
 .flash-success{
-    color: greenyellow;
+    color: $success;
 }
 
 .flash-failure{
-    color: rgb(241, 50, 50);
+    color: $failure;
 }
 
 h2{
@@ -30,7 +30,7 @@ h2{
 }
 
 h3{
-    color: goldenrod;
+    color: $mainColor;
 }
 
 .appears{
@@ -55,18 +55,18 @@ h3{
         display: flex;
         flex-direction: row;
         justify-content: space-around;
-        background-color: black;
+        background-color: $black;
         padding: 1.2em;
         &-link:link, &-link:visited{
             text-decoration: none;
             font-weight: bolder;
             font-size: 1.5em;
-            color: goldenrod;
+            color: $mainColor;
             transition:all .3s ease-out;
         }
         &-link:hover{
             transform: scale(1.05);
-            color: rgb(206, 178, 108);
+            color: $mainLightColor;
         }
     }
 }
@@ -81,9 +81,9 @@ h3{
     align-items: center;
     position: relative;
     &-title{
-        color: goldenrod;
+        color: $mainColor;
         font-size: 5em;
-        text-shadow: 1px 1px 2px white;
+        text-shadow: 1px 1px 2px $white;
         z-index: 5;
     }
     &-fullname{
@@ -94,7 +94,7 @@ h3{
 
 .Selection{
     display: none;
-    background-color:rgb(206, 178, 108);
+    background-color: $mainLightColor;
     padding: .7em;
     position: absolute;
     width: 150px;
@@ -102,7 +102,7 @@ h3{
     z-index: 5;
     &::before{
         content:"";
-        background-color: rgb(206, 178, 108);;
+        background-color: $mainLightColor;
         width: 30px;
         height: 30px;
         position: absolute;
@@ -111,7 +111,7 @@ h3{
         transform: rotate(45deg);
     }
     &-link{
-        color:rgb(58, 53, 53)!important;
+        color: $darkGrey !important;
         padding: .7em;
         opacity: 0;
         transform: translateX(-30px);
@@ -134,7 +134,7 @@ h3{
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background-color: rgba(206, 178, 108, 0.404);
+    background-color: $opakGrey;
     padding: .5em;
 }
 
@@ -162,45 +162,45 @@ h2{
 
 .productSticker{
     width: 400px;
-    background-color: rgb(58, 53, 53);
+    background-color: $darkGrey;
     border-radius: 10px;
-    border: thick double goldenrod;
+    border: thick double $mainColor;
     margin: 1em;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     &-title{
-        color: goldenrod;
+        color: $mainColor;
     }
     &-pic{
         background-size: contain;
     }
     &-desc{
         padding: .5em;
-        color:rgb(206, 178, 108);
+        color: $mainLightColor;
     }
     &-price{
         display: block;
         text-align: center;
         padding: .3em;
-        color: white;
+        color: $white;
     }
     &-date{
-        color: white;
+        color: $white;
         font-style: italic;
         text-align: right;
         padding-right: .7em;
     }
     &-cat{
-        color: goldenrod;
+        color: $mainColor;
     }
     &-button:link, &-button:visited{
         display: inline-block;
         padding: .5em;
         margin: .5em;
-        background-color: goldenrod;
-        color: white;
+        background-color: $mainColor;
+        color: $white;
         width: 30%;
         text-decoration: none;
         text-transform: uppercase;
@@ -210,7 +210,7 @@ h2{
     }
     &-button:hover{
         transform: scale(1.2);
-        background-color: rgb(206, 178, 108);
+        background-color: $mainLightColor;
     }
 }
 
@@ -226,7 +226,7 @@ h2{
     &-pic{
         align-self: center;
         border-radius: 10px;
-        border: .7rem solid goldenrod;
+        border: .7rem solid $mainColor;
     }
     &-title{
         align-self: center;
@@ -250,6 +250,10 @@ a{
     text-decoration: none;
 }
 
+.Cents{
+    font-size: .8em;
+}
+
 //Formulaire
 
 input{
@@ -257,8 +261,8 @@ input{
 }
 
 .submit{
-    background-color: rgb(58, 53, 53);
-    color: rgb(206, 178, 108);
+    background-color: $darkGrey;
+    color: $mainLightColor;
     padding: .7em;
     margin-left: 0;
     margin-bottom: 2.5em;
@@ -278,7 +282,7 @@ ul{
 }
 
 li{
-    color:rgb(241, 50, 50);
+    color: $failure;
     list-style-type: none;
     font-size: 1.5em;
 }
@@ -294,11 +298,11 @@ li{
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
-    color:rgb(58, 53, 53);
+    color: $darkGrey;
 }
 
 .Comment{
-    background-color: rgb(206, 178, 108);
+    background-color: $mainLightColor;
     width: 60%;
     padding: .7em;
     border-radius: 10px;
@@ -307,7 +311,7 @@ li{
 }
 
 .Comment:nth-child(odd){
-    background-color: rgb(202, 200, 200);
+    background-color: $lightGrey;
 }
 
 .grade{
@@ -334,6 +338,10 @@ svg{
     width: 80px;
 }
 
+.catTable{
+    width: 60%;
+}
+
 table{
     border-collapse: collapse;
     margin-top: 2em;
@@ -345,29 +353,29 @@ table{
 }
 
 td{
-    border: solid 2px goldenrod;
+    border: solid 2px $mainColor;
     padding: 1em;
 }
 
 .TabEntete{
-    background-color: rgb(58, 53, 53);
-    color: rgb(202, 200, 200);
+    background-color: $darkGrey;
+    color: $lightGrey;
     font-weight: bolder;
     font-size: 1.5em;
     text-align: center;
 }
 
 .TabContent:nth-child(odd){
-    background-color: rgb(206, 178, 108);
-    color:rgb(58, 53, 53);
+    background-color: $mainLightColor;
+    color: $darkGrey;
     font-weight: bolder;
     font-size: 1em;
     text-align: center;
 }
 
 .TabContent:nth-child(even){
-    background-color: rgb(202, 200, 200);
-    color:rgb(58, 53, 53);
+    background-color: $lightGrey;
+    color: $darkGrey;
     font-weight: bolder;
     font-size: 1em;
     text-align: center;
@@ -379,8 +387,8 @@ td{
 }
 
 .button:link, .button:visited{
-    background-color: goldenrod;
-    color: rgb(58, 53, 53);
+    background-color: $mainColor;
+    color: $darkGrey;
     padding: 1em;
     display: inline-block;
     margin: 0 auto;
@@ -392,15 +400,15 @@ td{
 
 .button:hover{
     transform: scale(1.1);
-    background-color: rgb(206, 178, 108);
+    background-color: $mainLightColor;
 }
 
 .fa-trash-alt{
-    color:rgb(241, 50, 50);
+    color: $failure;
 }
 
 .fa-edit{
-    color: rgb(58, 53, 53);
+    color: $darkGrey;
 }
 
 //KEYFRAMES

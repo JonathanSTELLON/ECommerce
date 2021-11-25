@@ -54,7 +54,7 @@ h3 {
 }
 
 .errorPic {
-  width: 500px;
+  width: 1000px;
 }
 
 .SiteHeader-nav {
@@ -335,7 +335,7 @@ h2 {
       -ms-grid-row-align: center;
       align-self: center;
   border-radius: 10px;
-  border: .7rem solid goldenrod;
+  border: 0.7rem solid goldenrod;
 }
 
 .detailProduct-title {
@@ -363,6 +363,10 @@ h2 {
 
 a {
   text-decoration: none;
+}
+
+.Cents {
+  font-size: .8em;
 }
 
 input {
@@ -446,6 +450,10 @@ svg {
 .dashboardPic {
   height: 60px;
   width: 80px;
+}
+
+.catTable {
+  width: 60%;
 }
 
 table {

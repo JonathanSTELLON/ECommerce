@@ -71,13 +71,22 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator{
             return new RedirectResponse($targetPath);
         }
 
+        /**
+         * @var User
+         */
         $user = $token->getUser(); //pr afficher sur le template le nom de l'user
 
         // 1 Ajouter un message flash
         $this->flashbag->add('success', 'Bienvenue ' .$user->getFullName(). ' !');
 
-        // 2 Redirection accueil
-        return new RedirectResponse($this->urlGenerator->generate('home_index'));
+        // 2 Redirection vers home si user ou vers admin si le user a le rôle admin
+        if ($user->isAdmin() == false){
+            return new RedirectResponse($this->urlGenerator->generate('home_index'));
+        }
+        else{
+            return new RedirectResponse($this->urlGenerator->generate('admin_index'));
+        }
+        
     }
 
 }

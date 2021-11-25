@@ -20,6 +20,13 @@ class ProductController extends AbstractController{
      */
     public function show(ProductRepository $productRepository, Request $request, $slug, EntityManagerInterface $manager, ReviewRepository $reviewRepository):Response{
 
+        $product = $productRepository->findOneBy(array('slug' => $slug));
+        
+        //On crée une exception 404 si l'id du produit n'existe pas
+        if(!$product){
+            throw $this->createNotFoundException();
+        }
+
         $review = new Review(); //on ne l'injecte pas car les entités ne sont pas des services
 
         $currentUser = $this->getUser(); // On récupère l'utilisateur connecté
@@ -31,7 +38,6 @@ class ProductController extends AbstractController{
         $form = $this->createForm(ReviewType::class, $review);
 
         $createdAt = new DateTimeImmutable();
-        $product = $productRepository->findOneBy(array('slug' => $slug));
 
         $form->handleRequest($request);
 

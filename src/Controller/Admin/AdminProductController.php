@@ -54,7 +54,12 @@ class AdminProductController extends AbstractController{
     /**
      * @Route("/admin/product/edit/{id}", name="admin_product_edit")
      */
-    public function edit(Request $request, Product $product, EntityManagerInterface $manager):Response{
+    public function edit(Request $request, Product $product = null, EntityManagerInterface $manager):Response{
+
+        //On crée une exception 404 si l'id du produit n'existe pas
+        if(!$product){
+            throw $this->createNotFoundException();
+        }
 
         $productForm = $this->createForm(ProductType::class, $product);
         $updatedAt = new DateTimeImmutable();
@@ -80,7 +85,12 @@ class AdminProductController extends AbstractController{
     /**
      * @Route("/admin/product/delete/{id}", name="admin_product_delete")
      */
-    public function delete(Request $request, $id, Product $product, EntityManagerInterface $manager){
+    public function delete(Request $request, $id, Product $product = null, EntityManagerInterface $manager){
+
+        //On crée une exception 404 si l'id du produit n'existe pas
+        if(!$product){
+            throw $this->createNotFoundException();
+        }
 
         $manager->getRepository(Product::class)->find($id);
         $manager->remove($product);

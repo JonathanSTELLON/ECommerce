@@ -64,7 +64,7 @@ class AppFixtures extends Fixture{
             $product = new Product();
             $product->setName($faker->word(2));
             $product->setCategory($faker->randomElement($arrayCat));
-            $product->setPrice($faker->numberBetween(10,50));
+            $product->setPrice($faker->numberBetween(1000,5000));
             $product->setDescription($faker->text(2500));
             $product->setThumbnail($faker->imageUrl(300, 200, true));
             $product->setCreatedAt(DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-3 years', 'now', 'Europe/Paris')));

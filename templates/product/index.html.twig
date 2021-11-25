@@ -10,7 +10,7 @@
         <p class="detailProduct-desc">{{product.description}}</p>
         <small class="detailProduct-date">Publié le {{product.createdAt|date('d/m/Y')}}</small></br>
         <a href="{{ path('category_show', {'slug' : product.category.slug }) }}"><small class="productSticker-cat">Catégorie : {{product.category.name}}</small></a>
-        <small class="detailProduct-price">Prix : {{product.price}} €</small>
+        <small class="detailProduct-price">Prix : {{format_price(product.price)}}</small>
     </article>
 
     {% if app.user %}
