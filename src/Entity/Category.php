@@ -6,6 +6,7 @@ use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CategoryRepository::class)
@@ -21,6 +22,7 @@ class Category
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Veuillez saisir le nom de la catégorie")
      */
     private $name;
 
@@ -38,6 +40,11 @@ class Category
      * @ORM\Column(type="string", length=255)
      */
     private $slug;
+
+    /**
+     * @ORM\Column(type="datetime_immutable", nullable=true)
+     */
+    private $uptadedAt;
 
     public function __construct()
     {
@@ -111,6 +118,18 @@ class Category
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getUptadedAt(): ?\DateTimeImmutable
+    {
+        return $this->uptadedAt;
+    }
+
+    public function setUptadedAt(?\DateTimeImmutable $uptadedAt): self
+    {
+        $this->uptadedAt = $uptadedAt;
 
         return $this;
     }

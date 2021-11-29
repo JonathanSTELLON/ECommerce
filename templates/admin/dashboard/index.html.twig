@@ -20,10 +20,10 @@
         </thead>
         <tbody>
             {% for category in categories %}
-            <tr class="TabContent">
+            <tr class="TabContent" id="category-{{category.id}}">
                 <td>{{category.name}}</td>
-                <td><i class="far fa-edit"></i></td>
-                <td><i class="far fa-trash-alt"></i></td>
+                <td><a href="{{ path('admin_category_edit', {'id': category.id}) }}" ><i class="far fa-edit"></i></a></td>
+                <td><a class="deleteCat" href="{{ path('admin_category_delete', {'id': category.id}) }}" ><i class="far fa-trash-alt"></i></a></td>
             </tr>
             {% endfor %}
         </tbody>

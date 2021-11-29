@@ -1,0 +1,14 @@
+{% extends 'base.admin.html.twig' %}
+
+{% block title %} {{ parent() }} - Ajouter une catégorie {% endblock %}
+
+{% block body %}
+
+    <h2>Formulaire d'ajout de catégorie</h2>
+
+    {{form_start(categoryForm, {'attr':{'class':'form LayoutProduct', 'novalidate':'novalidate'}})}}
+        {{ form_widget(categoryForm, {'attr':{'class':'formChamp'}})}}
+        <input class="submit" type="submit" value="Ajouter !">          
+    {{form_end(categoryForm)}} 
+
+{% endblock %}
