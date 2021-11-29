@@ -2,19 +2,11 @@
 
 namespace App\Controller;
 
-use Twig\Environment;
-use App\Entity\Review;
-use DateTimeImmutable;
 use App\Entity\Category;
-use App\Form\ReviewType;
-use App\Repository\ReviewRepository;
-use App\Repository\ProductRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class CategoryController extends AbstractController{
 

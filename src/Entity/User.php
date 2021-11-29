@@ -71,9 +71,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $avatar;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Report::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $reports;
+
     public function __construct()
     {
         $this->reviews = new ArrayCollection();
+        $this->reports = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -252,4 +258,70 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return in_array('ROLE_ADMIN', $this->roles);
     }
+
+    /**
+     * @return Collection|Report[]
+     */
+    public function getReports(): Collection
+    {
+        return $this->reports;
+    }
+
+    public function addReport(Report $report): self
+    {
+        if (!$this->reports->contains($report)) {
+            $this->reports[] = $report;
+            $report->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReport(Report $report): self
+    {
+        if ($this->reports->removeElement($report)) {
+            // set the owning side to null (unless already changed)
+            if ($report->getUser() === $this) {
+                $report->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    //L'utilisateur a t'il le droit de signaler l'avis ?
+    public function canReport(Review $review): bool{
+
+        //si il est l'auteur de l'avis
+        if($this == $review->getUser()){
+            return false;
+        }
+
+        //si il l'a déjà signalé
+        foreach ($this->reports as $report){
+            if($report->getReview() == $review){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public function canUnreport(Review $review):bool {
+
+        foreach($this->reports as $report) {
+            if ($report->getReview() == $review) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function canRemoveReview(review $review):bool{
+
+        if($this == $review->getUser()){
+            return true;
+        }
+
+    }
+
 }

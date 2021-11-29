@@ -2,11 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Report;
 use App\Entity\Review;
-use App\Form\ReviewType;
-use App\Repository\ProductRepository;
-use App\Repository\ReviewRepository;
 use DateTimeImmutable;
+use App\Form\ReviewType;
+use App\Repository\ReviewRepository;
+use App\Repository\ProductRepository;
+use App\Repository\ReportRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -66,5 +68,65 @@ class ProductController extends AbstractController{
             'ReviewType' => $form->createView(),
             'comments' => $comments
         ]);
+    }
+
+    /**
+     * @Route("/product/{slug}/review/{id}/reports", name="review_report")
+     */
+    public function reports(Review $review, EntityManagerInterface $manager, $slug){
+
+        // On récupère l'utilisateur connecté
+        $user = $this->getUser();
+
+        // Si l'utilisateur n'a pas déjà signalé cet avis... il peut le faire
+        if ($user->canReport($review)) {
+
+            $report = new Report();
+            $report->setUser($this->getUser());
+            $report->setReview($review);
+            $report->setCreatedAt(new DateTimeImmutable);
+    
+            $manager->persist($report);
+            $manager->flush();
+    
+            $this->addFlash('success', 'Avis signalé');
+        }
+        else{
+            // Sinon on l'avertit qu'il l'a déjà fait
+            $this->addFlash('failure', 'Vous avez déjà signalé cet avis');
+        }
+        
+        // On redirige vers la page produit
+        return $this->redirectToRoute('product_show', ['slug' => $slug]);
+    }
+
+   /**
+     * @Route("/product/{slug}/review/{id}/unreports", name="review_unreport")
+     */
+    public function unreports(Review $review, string $slug, EntityManagerInterface $manager, ReportRepository $reportRepository){
+
+        $user = $this->getUser();
+
+        if($user->canUnreport($review)){
+
+            $report = $reportRepository->findOneBy(array('user' => $user, 'review' => $review));
+
+            $review->removeReport($report);
+
+            $manager->persist($report);
+            $manager->flush();
+    
+            $this->addFlash('success', 'Avis designalé');
+        }
+
+        return $this->redirectToRoute('product_show', ['slug' => $slug]);
+    
+    }
+
+    /**
+     * @Route("/product/{slug}/review/{id}/remove", name="review_remove")
+     */
+    public function removeReview(){
+
     }
 }

@@ -254,6 +254,18 @@ a{
     font-size: .8em;
 }
 
+.signal{
+    color: $failure;
+    font-weight: bolder;
+    padding-top: .3em;
+}
+
+.unsignal{
+    color: $success;
+    font-weight: bolder;
+    padding-top: .3em;
+}
+
 //Formulaire
 
 input{
