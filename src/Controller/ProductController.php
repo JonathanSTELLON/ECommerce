@@ -6,9 +6,9 @@ use App\Entity\Report;
 use App\Entity\Review;
 use DateTimeImmutable;
 use App\Form\ReviewType;
+use App\Repository\ReportRepository;
 use App\Repository\ReviewRepository;
 use App\Repository\ProductRepository;
-use App\Repository\ReportRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -126,7 +126,18 @@ class ProductController extends AbstractController{
     /**
      * @Route("/product/{slug}/review/{id}/remove", name="review_remove")
      */
-    public function removeReview(){
+    public function removeReview(Review $review, $slug, EntityManagerInterface $manager){
 
+        $user = $this->getUser();
+
+        if($user->canRemoveReview($review)){
+
+            $manager->remove($review);
+            $manager->flush();
+    
+            $this->addFlash('success', 'Avis supprimé');
+        }
+
+        return $this->redirectToRoute('product_show', ['slug' => $slug]);
     }
 }
