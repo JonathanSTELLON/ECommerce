@@ -317,12 +317,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     //L'utilisateur a t'il le droit de supprimer l'avis ?
-    public function canRemoveReview(review $review):bool{
+    // public function canRemoveReview(review $review):bool{
 
-        if($this == $review->getUser() || $this->isAdmin()){
-            return true;
-        }
-        return false;
-    }
+    //     if($this == $review->getUser() || $this->isAdmin()){
+    //         return true;
+    //     }
+    //     return false;
+    // }
 
 }

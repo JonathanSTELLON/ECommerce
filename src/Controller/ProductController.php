@@ -13,6 +13,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProductController extends AbstractController{
@@ -29,26 +30,33 @@ class ProductController extends AbstractController{
             throw $this->createNotFoundException();
         }
 
-        $review = new Review(); //on ne l'injecte pas car les entités ne sont pas des services
+        // On crée un objet Review qui contiendra l'éventuel nouvel avis si l'internaute remplit le formulaire et on ne l'injecte pas car les entités ne sont pas des services
+        $review = new Review(); 
 
-        $currentUser = $this->getUser(); // On récupère l'utilisateur connecté
+        // On récupère l'utilisateur connecté
+        $currentUser = $this->getUser(); 
 
         if($currentUser){
             $review->setNickname($currentUser->getFullName());
         }
         
+        // On crée le formulaire en lui associant notre objet $review
         $form = $this->createForm(ReviewType::class, $review);
 
         $createdAt = new DateTimeImmutable();
 
+        // On transmet les données de la requête au formulaire
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
+            // $review contient déjà les 3 champs du formulaire : nickname, content et grade
+            // on le complète avec la date du jour
             $review->setCreatedAt($createdAt);
+            // et le produit associé
             $review->setProduct($product);
+            // On associe l'utilisateur connecté
             $review->setUser($currentUser);
             
-
             // On persiste les données dans la base
             $manager->persist($review);
             $manager->flush();
@@ -60,9 +68,9 @@ class ProductController extends AbstractController{
             return $this->redirectToRoute('product_show', ['slug'=>$product->getSlug()]);
         }
 
-        $comments = $reviewRepository->findBy(array('product' => $product), array('createdAt' => 'DESC'));
-        //dd($comments);
-
+        // $comments = $reviewRepository->findBy(array('product' => $product), array('createdAt' => 'DESC'));
+        $comments = $reviewRepository->findValidReviews($product);
+       
         return $this->render('product/index.html.twig', [
             'product' => $product,
             'ReviewType' => $form->createView(),
@@ -105,12 +113,16 @@ class ProductController extends AbstractController{
      */
     public function unreports(Review $review, string $slug, EntityManagerInterface $manager, ReportRepository $reportRepository){
 
+        // On récupère l'utilisateur connecté
         $user = $this->getUser();
 
+        // Si l'utilisateur peut supprimer son signalement de l'avis... 
         if($user->canUnreport($review)){
 
+            // On récupère le signalement associé à l'utilisateur connecté et à l'avis récupéré en paramètre
             $report = $reportRepository->findOneBy(array('user' => $user, 'review' => $review));
 
+            // ... on le supprime !
             $review->removeReport($report);
 
             $manager->persist($report);
@@ -125,19 +137,15 @@ class ProductController extends AbstractController{
 
     /**
      * @Route("/product/{slug}/review/{id}/remove", name="review_remove")
+     * @IsGranted("DELETE_REVIEW", subject="review")
      */
     public function removeReview(Review $review, $slug, EntityManagerInterface $manager){
 
-        $user = $this->getUser();
-
-        if($user->canRemoveReview($review)){
-
-            $manager->remove($review);
-            $manager->flush();
+        $manager->remove($review);
+        $manager->flush();
     
-            $this->addFlash('success', 'Avis supprimé');
-        }
-
+        $this->addFlash('success', 'Avis supprimé');
+      
         return $this->redirectToRoute('product_show', ['slug' => $slug]);
     }
 }

@@ -27,24 +27,24 @@
 
     <div class="Review LayoutProduct">
         {% for comment in comments %}
-            {% if comment.reports|length<5 %}
-                <div class="Comment">
-                    <small>Publié par : {{comment.nickname}} le {{comment.createdAt|date('d/m/Y')}}</small>
-                    {% if app.user.canRemoveReview(comment) %}
+            <div class="Comment">
+                <small>Publié par : {{comment.nickname}} le {{comment.createdAt|date('d/m/Y')}}</small>
+                {% if app.user %}
+                    {% if is_granted('DELETE_REVIEW', comment) %} 
                         <a href="{{path('review_remove', {'slug':product.slug, 'id': comment.id})}}"><i class="far fa-trash-alt"></i></a>
                     {% endif %}
-                    <p>Avis : {{comment.content}}</p>
-                    <small class="grade">Note : {{comment.grade}}/5</small></br>
-                    {% if app.user %}
-                        {% if app.user.canReport(comment) %}
-                            <a class="signal" href="{{path('review_report', {'slug':product.slug, 'id': comment.id} )}}"><i class="fas fa-exclamation signal"></i> Signaler cet avis</a>
-                        {% endif %}
-                        {% if app.user.canUnreport(comment) %}
-                            <a class="unsignal" href="{{path('review_unreport', {'slug':product.slug, 'id': comment.id} )}}"><i class="fas fa-check unsignal"></i> Désignaler cet avis</a>
-                        {% endif %}
+                {% endif %}
+                <p>Avis : {{comment.content}}</p>
+                <small class="grade">Note : {{comment.grade}}/5</small></br>
+                {% if app.user %}
+                    {% if app.user.canReport(comment) %}
+                        <a class="signal" href="{{path('review_report', {'slug':product.slug, 'id': comment.id} )}}"><i class="fas fa-exclamation signal"></i> Signaler cet avis</a>
                     {% endif %}
-                </div>
-            {% endif %}
+                    {% if app.user.canUnreport(comment) %}
+                        <a class="unsignal" href="{{path('review_unreport', {'slug':product.slug, 'id': comment.id} )}}"><i class="fas fa-check unsignal"></i> Désignaler cet avis</a>
+                    {% endif %}
+                {% endif %}
+            </div>
         {% endfor %}
     </div>
     

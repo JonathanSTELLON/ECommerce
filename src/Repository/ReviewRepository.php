@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Review;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Entity\Product;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Review|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,6 +18,18 @@ class ReviewRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Review::class);
+    }
+
+    public function findValidReviews(Product $product)
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('SIZE(r.reports) < 5')
+            ->andWhere('r.product = :product')
+            ->setParameter('product', $product)
+            ->orderBy('r.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
     // /**
