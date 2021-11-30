@@ -5,7 +5,7 @@
 {% block body %}
 
     <article class="detailProduct LayoutProduct">
-        <img class="detailProduct-pic" src="{{product.thumbnail}}"></img>
+        <img class="detailProduct-pic" src="{{thumbnail_asset(product.thumbnail)}}"></img>
         <h2 class="detailProduct-title">{{product.name|capitalize}}</h2>
         <p class="detailProduct-desc">{{product.description}}</p>
         <small class="detailProduct-date">Publié le {{product.createdAt|date('d/m/Y')}}</small></br>

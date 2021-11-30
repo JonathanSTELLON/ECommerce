@@ -266,6 +266,8 @@ h2 {
 
 .productSticker-pic {
   background-size: contain;
+  width: auto;
+  height: 200px;
 }
 
 .productSticker-desc {
@@ -336,6 +338,8 @@ h2 {
       align-self: center;
   border-radius: 10px;
   border: 0.7rem solid goldenrod;
+  width: auto;
+  height: 300px;
 }
 
 .detailProduct-title {

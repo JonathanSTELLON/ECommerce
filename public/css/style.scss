@@ -175,6 +175,8 @@ h2{
     }
     &-pic{
         background-size: contain;
+        width: auto;
+        height: 200px;
     }
     &-desc{
         padding: .5em;
@@ -227,6 +229,8 @@ h2{
         align-self: center;
         border-radius: 10px;
         border: .7rem solid $mainColor;
+        width: auto;
+        height: 300px;
     }
     &-title{
         align-self: center;

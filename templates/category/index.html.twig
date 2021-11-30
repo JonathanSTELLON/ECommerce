@@ -10,7 +10,7 @@
     {% for product in category.products %}
         <article class="productSticker">
             <h2 class="productSticker-title">{{product.name|capitalize}}</h2> 
-            <img class="productSticker-pic" src="{{product.thumbnail}}"></img>
+            <img class="productSticker-pic" src="{{thumbnail_asset(product.thumbnail)}}"></img>
             <p class="productSticker-desc">{{product.description|slice(0,150)}}[...]</p>
             <small class="productSticker-date">Publié le {{product.createdAt|date('d/m/Y')}}</small></br>
             <small class="productSticker-price">Prix : {{product.price}} €</small>

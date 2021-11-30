@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 class AdminProductController extends AbstractController{
 
@@ -35,9 +36,28 @@ class AdminProductController extends AbstractController{
 
         if($productForm->isSubmitted() && $productForm->isValid()){
 
+            $uploadedPhoto = $productForm->get('thumbnail')->getData();
+
+            if ($uploadedPhoto){
+
+                $originalFilename = pathinfo($uploadedPhoto->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $this->slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$uploadedPhoto->guessExtension();
+
+                try {
+                    $uploadedPhoto->move(
+                        $this->getParameter('pictures_absolute_path'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    echo('Raté !');
+                }
+
+                $product->setThumbnail($newFilename);
+            }
+
             $product->setCreatedAt($createdAt);
             $product->setSlug($this->slugger->slug($product->getName()));
-
             $manager->persist($product);
             $manager->flush();
             $this->addFlash('success', 'Votre produit a été correctement ajouté');
@@ -68,8 +88,27 @@ class AdminProductController extends AbstractController{
 
         if($productForm->isSubmitted() && $productForm->isValid()){
 
-            $product->setUpdatedAt($updatedAt);
+            $uploadedPhoto = $productForm->get('thumbnail')->getData();
 
+            if ($uploadedPhoto){
+
+                $originalFilename = pathinfo($uploadedPhoto->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $this->slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$uploadedPhoto->guessExtension();
+
+                try {
+                    $uploadedPhoto->move(
+                        $this->getParameter('pictures_absolute_path'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    echo('Raté !');
+                }
+
+                $product->setThumbnail($newFilename);
+            }
+
+            $product->setUpdatedAt($updatedAt);
             $manager->flush();
             $this->addFlash('success', 'Votre produit a été correctement modifié');
 
@@ -79,7 +118,6 @@ class AdminProductController extends AbstractController{
         return $this->render('admin/product/edit.html.twig', [
             'productForm' => $productForm->createView(),
         ]);
-
     }
 
     /**

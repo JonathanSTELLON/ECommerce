@@ -46,7 +46,7 @@ class Product
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="Veuillez choisir une photo")
+     * @Assert\NotBlank(message="Veuillez entrer une photo")
      */
     private $thumbnail;
 
