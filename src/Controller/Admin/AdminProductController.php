@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 class AdminProductController extends AbstractController{
@@ -74,7 +75,7 @@ class AdminProductController extends AbstractController{
     /**
      * @Route("/admin/product/edit/{id}", name="admin_product_edit")
      */
-    public function edit(Request $request, Product $product = null, EntityManagerInterface $manager):Response{
+    public function edit(Request $request, Product $product = null, EntityManagerInterface $manager, Filesystem $filesystem):Response{
 
         //On crée une exception 404 si l'id du produit n'existe pas
         if(!$product){
@@ -90,6 +91,14 @@ class AdminProductController extends AbstractController{
 
             $uploadedPhoto = $productForm->get('thumbnail')->getData();
 
+            if($uploadedPhoto){
+                $lastPic= $product->getThumbnail();
+                if($filesystem->exists($this->getParameter('pictures_absolute_path').'/'. $lastPic))
+                {
+                    $filesystem->remove($this->getParameter('pictures_absolute_path').'/'. $lastPic);
+                }
+            }
+            
             if ($uploadedPhoto){
 
                 $originalFilename = pathinfo($uploadedPhoto->getClientOriginalName(), PATHINFO_FILENAME);
@@ -107,8 +116,9 @@ class AdminProductController extends AbstractController{
 
                 $product->setThumbnail($newFilename);
             }
-
+            
             $product->setUpdatedAt($updatedAt);
+            
             $manager->flush();
             $this->addFlash('success', 'Votre produit a été correctement modifié');
 
@@ -123,12 +133,15 @@ class AdminProductController extends AbstractController{
     /**
      * @Route("/admin/product/delete/{id}", name="admin_product_delete")
      */
-    public function delete(Request $request, $id, Product $product = null, EntityManagerInterface $manager){
+    public function delete(Request $request, $id, Product $product = null, EntityManagerInterface $manager, FileSystem $filesystem){
 
         //On crée une exception 404 si l'id du produit n'existe pas
         if(!$product){
             throw $this->createNotFoundException();
         }
+
+        $lastPic= $product->getThumbnail();
+        $filesystem->remove($this->getParameter('pictures_absolute_path').'/'. $lastPic);
 
         $manager->getRepository(Product::class)->find($id);
         $manager->remove($product);

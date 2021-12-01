@@ -34,8 +34,13 @@ class ThumbnailExtension extends AbstractExtension{
 
     public function thumbnailAsset($filename)
     {
-        
-        $thumbnailPath = $this->picturesAbsoluteUrl . '/' . $filename;
-        return $thumbnailPath;
+        if (filter_var($filename, FILTER_VALIDATE_URL)) {
+            $thumbnailPath = $filename;
+            return $thumbnailPath;
+        }
+        else{
+            $thumbnailPath = $this->picturesAbsoluteUrl . '/' . $filename;
+            return $thumbnailPath;
+        }
     }
 }

@@ -14,11 +14,42 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ProductType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $currentProduct = $builder->getData();
+
+        if($currentProduct->getId()){
+            $constraints = [
+                new File([
+                'maxSize' => '500k',
+                'mimeTypes' => [
+                    'image/jpeg',
+                    'image/jpg',
+                    'image/png',
+                ],
+                'mimeTypesMessage' => 'Veuillez entrer un type de fichier valide (jpeg ou png)',
+                ])
+            ];
+        }
+        else{
+            $constraints = [
+                new File([
+                    'maxSize' => '500k',
+                    'mimeTypes' => [
+                        'image/jpeg',
+                        'image/jpg',
+                        'image/png',
+                    ],
+                    'mimeTypesMessage' => 'Veuillez entrer un type de fichier valide (jpeg ou png)',
+                ]),
+                new NotBlank()
+            ];
+        }
+        
         $builder
             ->add('name', TextType::class, [
                 'label' => 'Nom du produit',
@@ -38,17 +69,7 @@ class ProductType extends AbstractType
                 'attr' => ['class' => 'input'],
                 'mapped' => false,
                 'required' => false,
-                'constraints' => [
-                    new File([
-                        'maxSize' => '500k',
-                        'mimeTypes' => [
-                            'image/jpeg',
-                            'image/jpg',
-                            'image/png',
-                        ],
-                        'mimeTypesMessage' => 'Veuillez entrer un type de fichier valide (jpeg ou png)',
-                    ])
-                ],
+                'constraints' => $constraints
             ])
             ->add('category', EntityType::class, [
                 'label' => 'Catégorie',
