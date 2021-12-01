@@ -91,6 +91,7 @@ class AdminProductController extends AbstractController{
 
             $uploadedPhoto = $productForm->get('thumbnail')->getData();
 
+            // Si nouveau fichier image uploadé on supprime l'ancien
             if($uploadedPhoto){
                 $lastPic= $product->getThumbnail();
                 if($filesystem->exists($this->getParameter('pictures_absolute_path').'/'. $lastPic))
@@ -127,6 +128,7 @@ class AdminProductController extends AbstractController{
 
         return $this->render('admin/product/edit.html.twig', [
             'productForm' => $productForm->createView(),
+            'product' => $product
         ]);
     }
 

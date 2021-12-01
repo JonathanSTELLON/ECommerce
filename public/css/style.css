@@ -545,6 +545,40 @@ td {
   color: #3a3535;
 }
 
+.formContainer {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 2fr 1fr;
+      grid-template-columns: 2fr 1fr;
+}
+
+.preview {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.preview-title {
+  color: #ceb26c;
+  padding-bottom: .5em;
+}
+
+.preview-pic {
+  width: 200px;
+  height: auto;
+  padding-bottom: 2em;
+}
+
 @-webkit-keyframes apparition {
   100% {
     opacity: 1;

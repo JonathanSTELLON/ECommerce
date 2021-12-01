@@ -427,6 +427,27 @@ td{
     color: $darkGrey;
 }
 
+.formContainer{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+.preview{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    &-title{
+        color: $mainLightColor;
+        padding-bottom: .5em;
+    }
+    &-pic{
+        width: 200px;
+        height: auto;
+        padding-bottom: 2em;
+    }
+}
+
 //KEYFRAMES
 
 @keyframes apparition{

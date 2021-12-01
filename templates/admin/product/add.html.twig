@@ -6,9 +6,17 @@
 
     <h2>Formulaire d'ajout de produit</h2>
 
-    {{form_start(productForm, {'attr':{'class':'form LayoutProduct', 'novalidate':'novalidate'}})}}
-        {{ form_widget(productForm, {'attr':{'class':'formChamp'}})}}
-        <input class="submit" type="submit" value="Ajouter !">          
-    {{form_end(productForm)}} 
+    <div class="formContainer LayoutProduct">
+        {{form_start(productForm, {'attr':{'class':'form', 'novalidate':'novalidate'}})}}
+            {{ form_widget(productForm, {'attr':{'class':'formChamp'}})}}
+            <input class="submit" type="submit" value="Ajouter !">          
+        {{form_end(productForm)}} 
+
+        <div class="preview">
+            <small class="preview-title">Prévisaluation de votre image</small>
+            <img class="preview-pic" id="file-ip-1-preview">
+        </div>
+    </div>
+    
 
 {% endblock %}
