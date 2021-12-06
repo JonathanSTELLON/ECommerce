@@ -235,6 +235,9 @@ h2{
     &-title{
         align-self: center;
     }
+    &-fav{
+        color: $mainColor;
+    }
     &-desc{
         font-size: 1.3em;
         text-align: justify;
@@ -369,19 +372,19 @@ table{
 }
 
 td{
-    border: solid 2px $mainColor;
+    //border: solid 2px $mainColor;
     padding: 1em;
 }
 
 .TabEntete{
-    background-color: $darkGrey;
-    color: $lightGrey;
+    background-color: $mainColor;
+    color: $darkGrey;
     font-weight: bolder;
     font-size: 1.5em;
     text-align: center;
 }
 
-.TabContent:nth-child(odd){
+.TabContent:nth-child(even){
     background-color: $mainLightColor;
     color: $darkGrey;
     font-weight: bolder;
@@ -389,7 +392,7 @@ td{
     text-align: center;
 }
 
-.TabContent:nth-child(even){
+.TabContent:nth-child(odd){
     background-color: $lightGrey;
     color: $darkGrey;
     font-weight: bolder;

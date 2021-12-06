@@ -348,6 +348,10 @@ h2 {
       align-self: center;
 }
 
+.detailProduct-fav {
+  color: goldenrod;
+}
+
 .detailProduct-desc {
   font-size: 1.3em;
   text-align: justify;
@@ -483,19 +487,18 @@ table {
 }
 
 td {
-  border: solid 2px goldenrod;
   padding: 1em;
 }
 
 .TabEntete {
-  background-color: #3a3535;
-  color: #cac8c8;
+  background-color: goldenrod;
+  color: #3a3535;
   font-weight: bolder;
   font-size: 1.5em;
   text-align: center;
 }
 
-.TabContent:nth-child(odd) {
+.TabContent:nth-child(even) {
   background-color: #ceb26c;
   color: #3a3535;
   font-weight: bolder;
@@ -503,7 +506,7 @@ td {
   text-align: center;
 }
 
-.TabContent:nth-child(even) {
+.TabContent:nth-child(odd) {
   background-color: #cac8c8;
   color: #3a3535;
   font-weight: bolder;

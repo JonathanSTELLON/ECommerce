@@ -7,6 +7,14 @@
     <article class="detailProduct LayoutProduct">
         <img class="detailProduct-pic" src="{{thumbnail_asset(product.thumbnail)}}"></img>
         <h2 class="detailProduct-title">{{product.name|capitalize}}</h2>
+        {% if app.user %}
+            {% if app.user.canFavorite(product) %}
+                <a class="detailProduct-fav" href="{{path('favorite', {'slug':product.slug})}}"><i class="fas fa-crown"></i> Ajouter en favori</a>
+            {% endif %}
+            {% if app.user.canUnfavorite(product) %}
+                <a class="detailProduct-fav" href="{{path('unfavorite', {'slug':product.slug})}}"><i class="fas fa-heart-broken"></i></i> Supprimer des favoris</a>
+            {% endif %}
+        {% endif %}
         <p class="detailProduct-desc">{{product.description}}</p>
         <small class="detailProduct-date">Publié le {{product.createdAt|date('d/m/Y')}}</small></br>
         <a href="{{ path('category_show', {'slug' : product.category.slug }) }}"><small class="productSticker-cat">Catégorie : {{product.category.name}}</small></a>
@@ -14,7 +22,7 @@
     </article>
 
     {% if app.user %}
-    <div class="formContainer LayoutProduct">
+    <div class="LayoutProduct">
         <h3>Laissez un avis</h3>
         {{form_start(ReviewType, {'attr':{'class':'form', 'novalidate':'novalidate'}})}} {# ->balise <form> #}
             {{ form_widget(ReviewType, {'attr':{'class':'formChamp'}})}} {# ->les champs du formulaire #}

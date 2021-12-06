@@ -76,10 +76,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $reports;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Product::class, inversedBy="users")
+     */
+    private $favorites;
+
     public function __construct()
     {
         $this->reviews = new ArrayCollection();
         $this->reports = new ArrayCollection();
+        $this->favorites = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -324,5 +330,40 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     //     }
     //     return false;
     // }
+
+    /**
+     * @return Collection|Product[]
+     */
+    public function getFavorites(): Collection
+    {
+        return $this->favorites;
+    }
+
+    public function addFavorite(Product $favorite): self
+    {
+        if (!$this->favorites->contains($favorite)) {
+            $this->favorites[] = $favorite;
+        }
+
+        return $this;
+    }
+
+    public function removeFavorite(Product $favorite): self
+    {
+        $this->favorites->removeElement($favorite);
+
+        return $this;
+    }
+
+    //L'utilisateur peut-il ajouter un produit en favori ?
+    public function canFavorite(Product $favorite):bool{
+
+        return !$this->favorites->contains($favorite);
+    }
+
+    public function canUnfavorite(Product $favorite):bool{
+
+        return $this->favorites->contains($favorite);
+    }
 
 }

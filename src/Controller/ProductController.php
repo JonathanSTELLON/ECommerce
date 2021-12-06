@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Report;
 use App\Entity\Review;
 use DateTimeImmutable;
+use App\Entity\Product;
 use App\Form\ReviewType;
 use App\Repository\ReportRepository;
 use App\Repository\ReviewRepository;
@@ -147,5 +149,46 @@ class ProductController extends AbstractController{
         $this->addFlash('success', 'Avis supprimé');
       
         return $this->redirectToRoute('product_show', ['slug' => $slug]);
+    }
+
+    /**
+     * @Route("/product/{slug}/favorite", name="favorite")
+     */
+    public function favorite(Product $favorite, EntityManagerInterface $manager, $slug){
+
+        $user = $this->getUser();
+
+        if($user->canfavorite($favorite)){
+            $user->addFavorite($favorite);
+
+            $manager->persist($favorite);
+            $manager->flush();
+    
+            $this->addFlash('success', 'Produit ajouté dans vos favoris');
+
+        }
+        else{
+            $this->addFlash('failure', 'Vous avez déjà ajouté ce produit en favori');
+        }
+        return $this->redirectToRoute('product_show', ['slug' => $slug]);
+    }
+
+    /**
+     * @Route("/product/{slug}/unfavorite", name="unfavorite")
+     */
+    public function unfavorite(Product $favorite, EntityManagerInterface $manager, $slug){
+
+        $user = $this->getUser();
+
+        if($user->canUnfavorite($favorite)){
+            $user->removefavorite($favorite);
+
+            $manager->persist($favorite);
+            $manager->flush();
+
+            $this->addFlash('success', 'Produit supprimé des favoris');
+        }
+        return $this->redirectToRoute('product_show', ['slug' => $slug]);
+
     }
 }

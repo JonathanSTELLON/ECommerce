@@ -6,19 +6,19 @@
     {# {{ dump( categoryRepository.findAll()) }} #}
     {# <a href="#" class="SiteHeader-nav-link burger"><i class="fas fa-bars"></i></a>
     <a href="#" class="SiteHeader-nav-link noBurger"><i class="fas fa-times"></i></a> #}
-    <a class="SiteHeader-nav-link" href="{{ path('home_index') }}"><i class="fas fa-home"></i> Site Public</a>
-    
-    {% if app.user %}
-        <a class="SiteHeader-nav-link" href="{{ path('admin_index') }}"><i class="fas fa-user-cog"></i> Dashboard</a>
-        <a class="SiteHeader-nav-link" href="{{ path('security_logout') }}"><i class="fas fa-sign-out-alt"></i> Deconnexion</a>
-    {% endif %}
+        <a class="SiteHeader-nav-link" href="{{ path('home_index') }}"><i class="fas fa-home"></i> Site Public</a>
+        
+        {% if app.user %}
+            <a class="SiteHeader-nav-link" href="{{ path('admin_index') }}"><i class="fas fa-user-cog"></i> Dashboard</a>
+            <a class="SiteHeader-nav-link" href="{{ path('security_logout') }}"><i class="fas fa-sign-out-alt"></i> Deconnexion</a>
+        {% endif %}
 
-    {% if app.user %}
-    <div class="UserContainer">
-        <small class="baneer-fullname">{{app.user.fullName}}</small>
-        <img class="baneerAvatar" src="{{avatar_asset(app.user.avatar)}}" alt="avatar">
-    </div>
-    {% endif %}
-</nav>
+        {% if app.user %}
+        <div class="UserContainer">
+            <small class="baneer-fullname">{{app.user.fullName}}</small>
+            <img class="baneerAvatar" src="{{avatar_asset(app.user.avatar)}}" alt="avatar">
+        </div>
+        {% endif %}
+    </nav>
 
 {% endblock %}
