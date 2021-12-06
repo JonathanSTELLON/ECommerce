@@ -2,11 +2,6 @@
 
 {% block title %} {{ parent() }} - Signup {% endblock %}
 
-{% block javascripts %}
-    {{parent()}}
-    <script src="{{ asset('js/signup.js') }}" defer></script>
-{% endblock %}
-
 {% block body %}
 
 <section class="signup LayoutProduct">
@@ -36,4 +31,10 @@
     </div>
 </section>
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="module" src="{{ asset('js/signup.js') }}"></script>
 {% endblock %}

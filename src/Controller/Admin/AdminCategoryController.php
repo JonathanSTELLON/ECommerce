@@ -95,7 +95,7 @@ class AdminCategoryController extends AbstractController{
         $manager->remove($category);
         $manager->flush();
 
-        if($request->isXmlHttpRequest()){
+        if ($request->isXmlHttpRequest()){
             return $this->json($id);
         }
 

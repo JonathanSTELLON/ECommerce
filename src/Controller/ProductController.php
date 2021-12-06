@@ -156,7 +156,7 @@ class ProductController extends AbstractController{
     /**
      * @Route("/product/{slug}/favorite", name="favorite")
      */
-    public function favorite(Product $favorite, EntityManagerInterface $manager, $slug){
+    public function favorite(Request $request, Product $favorite, EntityManagerInterface $manager, $slug){
 
         $user = $this->getUser();
 
@@ -172,13 +172,15 @@ class ProductController extends AbstractController{
         else{
             $this->addFlash('failure', 'Vous avez déjà ajouté ce produit en favori');
         }
-        return $this->redirectToRoute('product_show', ['slug' => $slug]);
+        $referer = filter_var($request->headers->get('referer'), FILTER_SANITIZE_URL);
+        return $this->redirect($referer);
+        //return $this->redirectToRoute('product_show', ['slug' => $slug]);
     }
 
     /**
      * @Route("/product/{slug}/unfavorite", name="unfavorite")
      */
-    public function unfavorite(Product $favorite, EntityManagerInterface $manager, $slug){
+    public function unfavorite(Request $request, Product $favorite, EntityManagerInterface $manager, $slug){
 
         $user = $this->getUser();
 
@@ -190,7 +192,11 @@ class ProductController extends AbstractController{
 
             $this->addFlash('success', 'Produit supprimé des favoris');
         }
-        return $this->redirectToRoute('product_show', ['slug' => $slug]);
+
+        //le $referer permet de rediriger vers la page ou on se trouve
+        $referer = filter_var($request->headers->get('referer'), FILTER_SANITIZE_URL);
+        return $this->redirect($referer);
+        // return $this->redirectToRoute('product_show', ['slug' => $slug]);
 
     }
 }

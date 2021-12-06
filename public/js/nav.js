@@ -1,8 +1,3 @@
-const SelectionClick = document.querySelector('.SelectionClick');
-SelectionClick.addEventListener('click', onClickSelection);
+import { Nav } from './modules/Nav.js';
 
-const menuSelection = document.querySelector('.Selection');
-
-function onClickSelection(){
-    menuSelection.classList.toggle("appears");
-}
+const nav = new Nav();

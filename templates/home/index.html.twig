@@ -9,13 +9,21 @@
     <div class="Homecontainer Layout">
     {% for product in products %}
         <article class="productSticker">
-            <h2 class="productSticker-title">{{product.name|capitalize}}</h2> 
+            <h2 class="productSticker-title">{{product.name|capitalize}}</h2>
             <img class="productSticker-pic" src="{{thumbnail_asset(product.thumbnail)}}"></img>
             <p class="productSticker-desc">{{product.description|slice(0,150)}}[...]</p>
             <small class="productSticker-date">Publié le {{product.createdAt|date('d/m/Y')}}</small></br>
             <a class="linkCat" href="{{ path('category_show', {'slug' : product.category.slug }) }}"><small class="productSticker-cat">Catégorie : {{product.category.name}}</small></a>
             <small class="productSticker-price">Prix : {{format_price(product.price)}}</small>
             <a class="productSticker-button" href="{{ path('product_show',{'slug' : product.slug }) }}">J'achète !</a>
+            {% if app.user %}
+                {% if app.user.canFavorite(product) %}
+                    <a class="detailProduct-fav" href="{{path('favorite', {'slug':product.slug})}}"><i class="fas fa-crown"></i> Ajouter en favori</a>
+                {% endif %}
+                {% if app.user.canUnfavorite(product) %}
+                    <a class="detailProduct-fav" href="{{path('unfavorite', {'slug':product.slug})}}"><i class="fas fa-heart-broken"></i></i> Supprimer des favoris</a>
+                {% endif %}
+            {% endif %}
         </article>
     {% endfor %}
     </div>
