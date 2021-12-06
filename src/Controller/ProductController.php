@@ -26,6 +26,7 @@ class ProductController extends AbstractController{
     public function show(ProductRepository $productRepository, Request $request, $slug, EntityManagerInterface $manager, ReviewRepository $reviewRepository):Response{
 
         $product = $productRepository->findOneBy(array('slug' => $slug));
+        $sameCats = $productRepository->findSameCat($product);
         
         //On crée une exception 404 si l'id du produit n'existe pas
         if(!$product){
@@ -76,7 +77,8 @@ class ProductController extends AbstractController{
         return $this->render('product/index.html.twig', [
             'product' => $product,
             'ReviewType' => $form->createView(),
-            'comments' => $comments
+            'comments' => $comments,
+            'sameCats' => $sameCats
         ]);
     }
 

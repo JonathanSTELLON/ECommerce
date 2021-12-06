@@ -21,6 +21,18 @@
         <small class="detailProduct-price">Prix : {{format_price(product.price)}}</small>
     </article>
 
+    <h3 class="LayoutProduct">Dans la même catégorie</h3>
+
+    <div class="SameCat LayoutProduct">
+    {% for sameCat in sameCats %}
+        <section class="SameCat-sticker">
+            <h2 class="SameCat-sticker-title">{{sameCat.name|capitalize}}</h2> 
+            <img class="SameCat-sticker-pic" src="{{thumbnail_asset(sameCat.thumbnail)}}"></img>
+            <a class="SameCat-sticker-link" href="{{ path('product_show',{'slug' : sameCat.slug }) }}">J'achète !</a>
+        </section>
+    {% endfor %}
+    </div>
+
     {% if app.user %}
     <div class="LayoutProduct">
         <h3>Laissez un avis</h3>

@@ -5,18 +5,25 @@
 {% block body %}
 
     <h2><i class="fas fa-glass-cheers"></i> Listes de vos bouteilles favorites</h2>
-
-    <div class="Homecontainer Layout">
-    {% for favProduct in favProducts %}
-        <article class="productSticker">
-            <h2 class="productSticker-title">{{favProduct.name|capitalize}}</h2> 
-            <img class="productSticker-pic" src="{{thumbnail_asset(favProduct.thumbnail)}}"></img>
-            <p class="productSticker-desc">{{favProduct.description|slice(0,150)}}[...]</p>
-            <small class="productSticker-date">Publié le {{favProduct.createdAt|date('d/m/Y')}}</small></br>
-            <a class="linkCat" href="{{ path('category_show', {'slug' : favProduct.category.slug }) }}"><small class="productSticker-cat">Catégorie : {{favProduct.category.name}}</small></a>
-            <small class="productSticker-price">Prix : {{format_price(favProduct.price)}}</small>
-        </article>
-    {% endfor %}
-    </div>
+    <table>
+        <thead>
+            <tr class="TabEntete">
+                <td>Nom du produit</td>
+                <td>Catégorie</td>
+                <td>Photo</td>
+                <td>Retirer des favoris</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for favProduct in favProducts %}
+            <tr class="TabContent" id="product-{{favProduct.id}}">
+                <td>{{favProduct.name|capitalize}}</td>
+                <td>{{favProduct.category.name}}</td>
+                <td><img class="dashboardPic" src="{{thumbnail_asset(favProduct.thumbnail)}}"></img></td>
+                <td><a class="flash-failure" href="{{path('unfavorite', {'slug':favProduct.slug})}}"><i class="fas fa-heart-broken"></i></i></a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
 {% endblock %}

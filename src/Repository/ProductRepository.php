@@ -19,6 +19,21 @@ class ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Product::class);
     }
 
+    public function findSameCat(Product $product){
+
+        $category = $product->getCategory();
+
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.category = :category')
+            ->andWhere('p != :product')
+            ->setParameter('product', $product)
+            ->setParameter('category', $category)
+            ->orderBy('p.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Product[] Returns an array of Product objects
     //  */

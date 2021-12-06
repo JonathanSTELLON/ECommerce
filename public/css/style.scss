@@ -273,6 +273,40 @@ a{
     padding-top: .3em;
 }
 
+.SameCat{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    &-sticker{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-left: 2em;
+        padding: .7em;
+        &-title{
+            color: $mainColor;
+            font-size: 1.5em;
+        }
+        &-pic{
+            width: auto;
+            height: 150px;
+            margin-bottom: .5em;
+            border-radius: 10px;
+            border: 2px solid $mainLightColor;
+        }
+        &-link:link, &-link:visited{
+            color: white;
+            background-color: $mainColor;
+            padding: .5em;
+            border-radius: 10px;;
+        }
+        &-link:hover{
+            background-color: $mainLightColor;
+        }
+    }
+}
+
 //Formulaire
 
 input{
