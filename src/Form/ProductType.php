@@ -22,7 +22,7 @@ class ProductType extends AbstractType
         //on récupère l'entité associée dans le controller à savoir le Product $product
         $currentProduct = $builder->getData();
 
-        //si je récupère un id ce la signifie que le $currentProduct est déjà en bdd donc on est dans la modif et on a pas besoin de la contrainte NotBlank()
+        //si je récupère un id cela signifie que le $currentProduct est déjà en bdd donc on est dans la modif et on a pas besoin de la contrainte NotBlank()
         if($currentProduct->getId()){
             $constraints = [
                 new File([
@@ -69,9 +69,7 @@ class ProductType extends AbstractType
                 'data_class' => null,
                 'label' => 'Photo',
                 'attr' => ['class' => 'input',
-                            'id'=>'file-ip-1',
-                            'onchange'=>'showPreview(event);'
-            ],
+                            ],
                 'mapped' => false, //on ne le lie pas à l'entité product et on remplira ce champ dans le controller 
                 'required' => false,
                 'constraints' => $constraints
