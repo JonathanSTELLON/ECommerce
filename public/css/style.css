@@ -4,8 +4,8 @@ html, body {
 
 body {
   margin: 0;
-  background-color: #3a3535;
-  color: #cac8c8;
+  background-color: #6b625d;
+  color: #CFB9B0;
 }
 
 .flash {
@@ -28,7 +28,7 @@ h2 {
 }
 
 h3 {
-  color: goldenrod;
+  color: #cdda42;
 }
 
 .appears {
@@ -75,7 +75,7 @@ h3 {
   text-decoration: none;
   font-weight: bolder;
   font-size: 1.5em;
-  color: goldenrod;
+  color: #cdda42;
   -webkit-transition: all .3s ease-out;
   transition: all .3s ease-out;
 }
@@ -83,7 +83,7 @@ h3 {
 .SiteHeader-nav-link:hover {
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
-  color: #ceb26c;
+  color: #B0C472;
 }
 
 .baneer {
@@ -104,7 +104,7 @@ h3 {
 }
 
 .baneer-title {
-  color: goldenrod;
+  color: #cdda42;
   font-size: 5em;
   text-shadow: 1px 1px 2px white;
   z-index: 5;
@@ -117,7 +117,7 @@ h3 {
 
 .Selection {
   display: none;
-  background-color: #ceb26c;
+  background-color: #B0C472;
   padding: .7em;
   position: absolute;
   width: 150px;
@@ -127,7 +127,7 @@ h3 {
 
 .Selection::before {
   content: "";
-  background-color: #ceb26c;
+  background-color: #B0C472;
   width: 30px;
   height: 30px;
   position: absolute;
@@ -138,7 +138,7 @@ h3 {
 }
 
 .Selection-link {
-  color: #3a3535 !important;
+  color: #6b625d !important;
   padding: .7em;
   opacity: 0;
   -webkit-transform: translateX(-30px);
@@ -210,7 +210,7 @@ h3 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-color: rgba(206, 178, 108, 0.404);
+  background-color: #8c7e7791;
   padding: .5em;
 }
 
@@ -241,9 +241,9 @@ h2 {
 
 .productSticker {
   width: 400px;
-  background-color: #3a3535;
+  background-color: #6b625d;
   border-radius: 10px;
-  border: thick double goldenrod;
+  border: thick double #cdda42;
   margin: 1em;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -261,7 +261,7 @@ h2 {
 }
 
 .productSticker-title {
-  color: goldenrod;
+  color: #cdda42;
 }
 
 .productSticker-pic {
@@ -272,7 +272,7 @@ h2 {
 
 .productSticker-desc {
   padding: .5em;
-  color: #ceb26c;
+  color: #B0C472;
 }
 
 .productSticker-price {
@@ -290,14 +290,14 @@ h2 {
 }
 
 .productSticker-cat {
-  color: goldenrod;
+  color: #cdda42;
 }
 
 .productSticker-button:link, .productSticker-button:visited {
   display: inline-block;
   padding: .5em;
   margin: .5em;
-  background-color: goldenrod;
+  background-color: #cdda42;
   color: white;
   width: 30%;
   text-decoration: none;
@@ -311,7 +311,7 @@ h2 {
 .productSticker-button:hover {
   -webkit-transform: scale(1.2);
           transform: scale(1.2);
-  background-color: #ceb26c;
+  background-color: #B0C472;
 }
 
 .detailProduct {
@@ -337,7 +337,7 @@ h2 {
       -ms-grid-row-align: center;
       align-self: center;
   border-radius: 10px;
-  border: 0.7rem solid goldenrod;
+  border: 0.7rem solid #cdda42;
   width: auto;
   height: 300px;
 }
@@ -349,7 +349,8 @@ h2 {
 }
 
 .detailProduct-fav {
-  color: goldenrod;
+  color: #cdda42;
+  padding-bottom: 1em;
 }
 
 .detailProduct-desc {
@@ -420,7 +421,7 @@ a {
 }
 
 .SameCat-sticker-title {
-  color: goldenrod;
+  color: #cdda42;
   font-size: 1.5em;
 }
 
@@ -429,18 +430,18 @@ a {
   height: 150px;
   margin-bottom: .5em;
   border-radius: 10px;
-  border: 2px solid #ceb26c;
+  border: 2px solid #B0C472;
 }
 
 .SameCat-sticker-link:link, .SameCat-sticker-link:visited {
   color: white;
-  background-color: goldenrod;
+  background-color: #cdda42;
   padding: .5em;
   border-radius: 10px;
 }
 
 .SameCat-sticker-link:hover {
-  background-color: #ceb26c;
+  background-color: #B0C472;
 }
 
 input {
@@ -448,8 +449,8 @@ input {
 }
 
 .submit {
-  background-color: #3a3535;
-  color: #ceb26c;
+  background-color: #6b625d;
+  color: #B0C472;
   padding: .7em;
   margin-left: 0;
   margin-bottom: 2.5em;
@@ -490,11 +491,11 @@ li {
           justify-content: flex-start;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  color: #3a3535;
+  color: #6b625d;
 }
 
 .Comment {
-  background-color: #ceb26c;
+  background-color: #B0C472;
   width: 60%;
   padding: .7em;
   border-radius: 10px;
@@ -503,7 +504,7 @@ li {
 }
 
 .Comment:nth-child(odd) {
-  background-color: #cac8c8;
+  background-color: #CFB9B0;
 }
 
 .grade {
@@ -545,24 +546,24 @@ td {
 }
 
 .TabEntete {
-  background-color: goldenrod;
-  color: #3a3535;
+  background-color: #cdda42;
+  color: #6b625d;
   font-weight: bolder;
   font-size: 1.5em;
   text-align: center;
 }
 
 .TabContent:nth-child(even) {
-  background-color: #ceb26c;
-  color: #3a3535;
+  background-color: #B0C472;
+  color: #6b625d;
   font-weight: bolder;
   font-size: 1em;
   text-align: center;
 }
 
 .TabContent:nth-child(odd) {
-  background-color: #cac8c8;
-  color: #3a3535;
+  background-color: #CFB9B0;
+  color: #6b625d;
   font-weight: bolder;
   font-size: 1em;
   text-align: center;
@@ -576,8 +577,8 @@ td {
 }
 
 .button:link, .button:visited {
-  background-color: goldenrod;
-  color: #3a3535;
+  background-color: #cdda42;
+  color: #6b625d;
   padding: 1em;
   display: inline-block;
   margin: 0 auto;
@@ -591,7 +592,7 @@ td {
 .button:hover {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
-  background-color: #ceb26c;
+  background-color: #B0C472;
 }
 
 .fa-trash-alt {
@@ -599,7 +600,7 @@ td {
 }
 
 .fa-edit {
-  color: #3a3535;
+  color: #6b625d;
 }
 
 .formContainer {
@@ -626,7 +627,7 @@ td {
 }
 
 .preview-title {
-  color: #ceb26c;
+  color: #B0C472;
   padding-bottom: .5em;
 }
 

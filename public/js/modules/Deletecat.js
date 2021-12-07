@@ -6,6 +6,7 @@ export class Deletecat {
 
         for (let i=0; i<this.confirmDeleteCat.length; i++){
             this.confirmDeleteCat[i].addEventListener('click', this.onClickDeleteCat);
+            
         }
     }
     async onClickDeleteCat(event){

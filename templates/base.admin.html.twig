@@ -1,11 +1,12 @@
 {% extends 'base.html.twig' %}
 
+{% block javascripts %}
+    <script type="module" src="{{ asset('js/admin.js') }}"></script>
+{% endblock %}
+
 {% block nav %}
 
     <nav class="SiteHeader-nav">
-    {# {{ dump( categoryRepository.findAll()) }} #}
-    {# <a href="#" class="SiteHeader-nav-link burger"><i class="fas fa-bars"></i></a>
-    <a href="#" class="SiteHeader-nav-link noBurger"><i class="fas fa-times"></i></a> #}
         <a class="SiteHeader-nav-link" href="{{ path('home_index') }}"><i class="fas fa-home"></i> Site Public</a>
         
         {% if app.user %}
